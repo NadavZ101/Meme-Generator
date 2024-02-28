@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+
+    /* check later if needed */
+}
+
+body {
+    font-size: 1rem;
+    /* margin: 0; */
+}
+
+h2 {
+    text-align: center;
+}
