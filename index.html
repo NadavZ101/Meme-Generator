@@ -13,9 +13,9 @@
     <header class="header">
         <h2>Meme Generator</h2>
         <nav class="header-nav-bar flex center gap">
-            <button class="header-nav-btn btn" onclick="">Gallery</button>
-            <button class="header-nav-btn btn" onclick="">Meme Editor</button>
-            <button class="header-nav-btn btn" onclick="">About</button>
+            <button class="gallery-btn btn" onclick="">Gallery</button>
+            <button class="editor-btn btn" onclick="">Meme Editor</button>
+            <button class="about-btn btn" onclick="">About</button>
 
             <!-- <ul class="clean-list">
                 <li class="header-nav" onclick="">Gallery</li>
@@ -27,7 +27,27 @@
     </header>
 
     <!-- GALLERY SECTION -->
-    <section class="gallery"></section>
+    <section class="gallery" hidden>
+        <!-- toggle the gallery / editor with hidden -->
+        <main>
+            <section class="search-section">
+                <div class="input-search">
+                    <input type="text" data-trans="search" class="search-meme" oninput="onSearchMeme(this.value)">
+                    <datalist id="meme-types">
+                        <option value="Politics"></option>
+                        <option value="Funny"></option>
+                    </datalist>
+                </div>
+            </section>
+
+            <section class="memes-gallery">
+
+                <!-- This will be in the render in the gallery controller -->
+                <img src="meme-imgs-square/1.jpg" onclick="onImgSelected(this)">
+                <img src="meme-imgs-square/2.jpg" onclick="onImgSelected(this)">
+            </section>
+        </main>
+    </section>
 
     <!-- MEME SECTION -->
     <div class="meme-flex-container flex center">
@@ -39,7 +59,8 @@
 
             <div class="editor flex direction-column">
                 <label for="text">Meme text</label>
-                <input class="txt-input" type="text" id="text" onchange="drawMemeText(this.value)">
+                <input class="txt-input" type="text" id="text" placeholder="enter text"
+                    onchange="onMemeTxt(this.value)">
 
                 <div class="txt-actions-bar flex">
                     <!-- Change to svg icons  -->
@@ -75,8 +96,8 @@
     </section>
 
     <!-- <script src="js/service/utils.js"></script> -->
-    <!-- <script src="js/service/meme-Service.js"></script> -->
-    <!-- <script src="js/gallery-Controller.js"></script> -->
+    <script src="js/service/meme-Service.js"></script>
+    <script src="js/gallery-Controller.js"></script>
     <script src="js/meme-Controller.js"></script>
 
 </body>
