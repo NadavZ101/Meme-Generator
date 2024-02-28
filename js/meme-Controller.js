@@ -43,7 +43,7 @@ function onMemeTxt(text) {
 
     //  ---------- Move it to separeted function ---------------- //
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'black'         //will come from the btn from service
+    gCtx.strokeStyle = 'orange'         //will come from the btn from service
 
     gCtx.fillStyle = 'lightsteelblue'   //will come from the btn from service
 
@@ -53,6 +53,11 @@ function onMemeTxt(text) {
 
     gCtx.fillText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
     gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y) // the Render
+}
+
+function downloadMeme(elLink) {
+    const meme = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = meme
 }
 
 

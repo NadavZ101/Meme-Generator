@@ -44,12 +44,7 @@
             </div>
         </section>
 
-        <section class="memes-gallery flex center">
-
-            <!-- This will be in the render in the gallery controller -->
-            <!-- <img src="meme-imgs-square/1.jpg" onclick="onImgSelect(this)">
-                <img src="meme-imgs-square/2.jpg" onclick="onImgSelect(this)"> -->
-        </section>
+        <section class="memes-gallery flex center"></section>
     </section>
 
     <!-- MEME SECTION -->
@@ -88,7 +83,8 @@
                 <div class="file-actions bar flex">
                     <button class="file-btn btn">Save</button>
                     <button class="file-btn btn">Share to Facebook</button>
-                    <button class="file-btn btn">Download</button>
+                    <!-- <button class="file-btn btn" "> -->
+                    <a href="#" class="file-btn btn" onclick="downloadMeme(this)" download="my-meme.jpg">Download</a>
                 </div>
             </div>
         </div>
