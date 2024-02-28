@@ -13,9 +13,9 @@
     <header class="header">
         <h2>Meme Generator</h2>
         <nav class="header-nav-bar flex center gap">
-            <button class="gallery-btn btn" onclick="">Gallery</button>
-            <button class="editor-btn btn" onclick="">Meme Editor</button>
-            <button class="about-btn btn" onclick="">About</button>
+            <button class="gallery-btn btn" onclick="toggleHidden(this)">Gallery</button>
+            <button class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</button>
+            <button class="about-btn btn" onclick="toggleHidden(this)">About</button>
 
             <!-- <ul class="clean-list">
                 <li class="header-nav" onclick="">Gallery</li>
@@ -27,7 +27,7 @@
     </header>
 
     <!-- GALLERY SECTION -->
-    <section class="gallery" hidden>
+    <section class="gallery">
         <!-- toggle the gallery / editor with hidden -->
         <main>
             <section class="search-section">
@@ -43,8 +43,8 @@
             <section class="memes-gallery">
 
                 <!-- This will be in the render in the gallery controller -->
-                <img src="meme-imgs-square/1.jpg" onclick="onImgSelected(this)">
-                <img src="meme-imgs-square/2.jpg" onclick="onImgSelected(this)">
+                <!-- <img src="meme-imgs-square/1.jpg" onclick="onImgSelect(this)">
+                <img src="meme-imgs-square/2.jpg" onclick="onImgSelect(this)"> -->
             </section>
         </main>
     </section>

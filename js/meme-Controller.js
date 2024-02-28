@@ -8,6 +8,7 @@ let gTextStartPoss = { x: 70, y: 50 } // maybe use reduce to move to the next po
 function onInit() {
     setCanvas()
     renderMeme()
+    renderGallery()
 }
 
 
@@ -53,6 +54,11 @@ function onMemeTxt(text) {
 function setCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+}
+
+function toggleHidden(ev) {
+    console.log(ev)
+
 }
 
 
