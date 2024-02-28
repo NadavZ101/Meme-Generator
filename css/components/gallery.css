@@ -1,0 +1,21 @@
+.search-section {
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-search {
+    /* flex-grow: 1; */
+}
+
+.search-meme {
+    flex-grow: 1fr;
+}
+
+.memes-gallery {
+    gap: 10px;
+    /* width: 200px; */
+}
+
+img {
+    width: 200px;
+}

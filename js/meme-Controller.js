@@ -7,29 +7,34 @@ let gTextStartPoss = { x: 70, y: 50 } // maybe use reduce to move to the next po
 
 function onInit() {
     setCanvas()
-    renderMeme()
     renderGallery()
+
 }
 
 
-function renderMeme() {
-    let meme = getMeme()
-
-    const elImg = onMemeImg(meme)
-    meme = getMeme()
-
-    elImg.onload = () =>
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+function renderMeme(memeImg) {
+    console.log(memeImg)
+    memeImg.onload = () =>
+        gCtx.drawImage(memeImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function onMemeImg({ selectedImgId }) {
-    const elImg = new Image()           //the selected image from the gallery
-    elImg.src = getMemeImg(selectedImgId)
+function onImgSelect(selectedImg, img) {
+    // const elImg = img // receiving the <img> from the galleryController render func
 
-    return elImg
-    // elImg.onload = () =>
-    //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    const elImg = new Image
+    console.log(elImg)
+    elImg.src = getMemeImg(selectedImg)
+    renderMeme(elImg)
 }
+
+// function onMemeImg({ selectedImgId }) {
+//     const elImg = new Image()           //the selected image from the gallery
+//     elImg.src = getMemeImg(selectedImgId)
+
+//     return elImg
+//     // elImg.onload = () =>
+//     //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+// }
 
 
 function onMemeTxt(text) {
@@ -56,10 +61,34 @@ function setCanvas() {
     gCtx = gElCanvas.getContext('2d')
 }
 
-function toggleHidden(ev) {
-    console.log(ev)
+// function toggleHidden(ev) {
+//     console.log(ev.classList.value)
+//     const elMemeEditor = document.querySelector('.meme-flex-container')
+//     const elGallery = document.querySelector('.gallery')
+//     const elAbout = document.querySelector('.about')
 
-}
+
+//     if (ev.classList.value === 'gallery-btn btn') {
+//         elMemeEditor.classList.remove('meme-flex-container')
+//         elGallery.classList.add('gallery')
+//         // elAbout.style.display = 'none'
+
+//     }
+
+//     if (ev.classList.value === 'editor-btn btn') {
+//         elMemeEditor.classList.add('meme-flex-container')
+//         elGallery.classList.remove('gallery')
+//         renderMeme()
+//         // elAbout.style.display = 'none'
+//     }
+
+//     if (ev.classList.value === 'about-btn btn') {
+//         elAbout.style.display = 'flex'
+//         elMemeEditor.style.display = 'none'
+//         elGallery.style.display = 'none'
+//     }
+
+// }
 
 
 

@@ -29,24 +29,27 @@
     <!-- GALLERY SECTION -->
     <section class="gallery">
         <!-- toggle the gallery / editor with hidden -->
-        <main>
-            <section class="search-section">
-                <div class="input-search">
-                    <input type="text" data-trans="search" class="search-meme" oninput="onSearchMeme(this.value)">
-                    <datalist id="meme-types">
-                        <option value="Politics"></option>
-                        <option value="Funny"></option>
-                    </datalist>
-                </div>
-            </section>
+        <section class="search-section flex center">
+            <div class="input-search">
+                <input type="text" data-trans="search" class="search-meme flex" oninput="onSearchMeme(this.value)">
+                <datalist id="meme-types">
+                    <option value="Politics"></option>
+                    <option value="Funny"></option>
+                </datalist>
+            </div>
 
-            <section class="memes-gallery">
+            <div class="keywords-search flex center">
+                <button onclick="onKeywordPressed(this.value)" data-trans="Politics" value="Politics">Politics</button>
+                <button onclick="onKeywordPressed(this.value)" data-trans="Funny" value="Funny">Funny</button>
+            </div>
+        </section>
 
-                <!-- This will be in the render in the gallery controller -->
-                <!-- <img src="meme-imgs-square/1.jpg" onclick="onImgSelect(this)">
+        <section class="memes-gallery flex center">
+
+            <!-- This will be in the render in the gallery controller -->
+            <!-- <img src="meme-imgs-square/1.jpg" onclick="onImgSelect(this)">
                 <img src="meme-imgs-square/2.jpg" onclick="onImgSelect(this)"> -->
-            </section>
-        </main>
+        </section>
     </section>
 
     <!-- MEME SECTION -->
@@ -95,7 +98,7 @@
 
     </section>
 
-    <!-- <script src="js/service/utils.js"></script> -->
+    <script src="js/service/utils.js"></script>
     <script src="js/service/meme-Service.js"></script>
     <script src="js/gallery-Controller.js"></script>
     <script src="js/meme-Controller.js"></script>
