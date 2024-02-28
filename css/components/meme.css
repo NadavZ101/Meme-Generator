@@ -1,11 +1,13 @@
 .meme {
-    display: grid;
-    grid-template-columns: 1fr 300px;
+    /* display: grid;
+    width: 80vh;
+    grid-template-columns: minmax(300px, 1fr) minmax(100px, 0.5fr);
     grid-template-rows: 1fr;
     grid-area:
         "canvas editor";
+    gap: 10px; */
     gap: 10px;
-
+    place-items: center;
     width: 80vh;
 
 }

@@ -12,7 +12,7 @@
     <!-- HEADER -->
     <header class="header">
         <h2>Meme Generator</h2>
-        <nav class="header-nav-bar flex justify-content-center gap">
+        <nav class="header-nav-bar flex center gap">
             <button class="header-nav-btn btn" onclick="">Gallery</button>
             <button class="header-nav-btn btn" onclick="">Meme Editor</button>
             <button class="header-nav-btn btn" onclick="">About</button>
@@ -30,43 +30,45 @@
     <section class="gallery"></section>
 
     <!-- MEME SECTION -->
-    <section class="meme main">
+    <div class="meme-flex-container flex center">
+        <div class="meme main flex center">
 
-        <!-- <div class="canvas-container"> -->
-        <canvas class="canvas" width="300" height="300"></canvas>
-        <!-- </div> -->
+            <!-- <div class="canvas-container"> -->
+            <canvas class="canvas" width="300" height="300"></canvas>
+            <!-- </div> -->
 
-        <div class="editor flex direction-column">
-            <label for="text">Meme text</label>
-            <input class="txt-input" type="text" id="text">
+            <div class="editor flex direction-column">
+                <label for="text">Meme text</label>
+                <input class="txt-input" type="text" id="text">
 
-            <div class="txt-actions-bar flex">
-                <!-- Change to svg icons  -->
-                <button class="txt-editor-btn btn" onclick="">Switch Line</button>
-                <button class="txt-editor-btn" onclick="">Add Line</button>
-                <button class="txt-editor-btn btn" onclick="">Delete Line</button>
-            </div>
+                <div class="txt-actions-bar flex">
+                    <!-- Change to svg icons  -->
+                    <button class="txt-editor-btn btn" onclick="">Switch Line</button>
+                    <button class="txt-editor-btn" onclick="">Add Line</button>
+                    <button class="txt-editor-btn btn" onclick="">Delete Line</button>
+                </div>
 
-            <div class="fonts-bar flex direction-column">
-                <!-- Change to svg icons  -->
-                <button class="font-btn btn" onclick="">Enlarge Font</button>
-                <button class="font-btn btn" onclick="">Decrease Font</button>
-                <button class="font-btn btn" onclick="">Align Left</button>
-                <button class="font-btn btn" onclick="">Align Center</button>
-                <button class="font-btn btn" onclick="">Align Right</button>
-                <button class="font-btn btn" onclick="">Text Color</button>
-                <select class="fonts-lists" onchange="">
-                    <option value="Impact">Impact</option>
-                </select>
-            </div>
+                <div class="fonts-bar flex direction-column">
+                    <!-- Change to svg icons  -->
+                    <button class="font-btn btn" onclick="">Enlarge Font</button>
+                    <button class="font-btn btn" onclick="">Decrease Font</button>
+                    <button class="font-btn btn" onclick="">Align Left</button>
+                    <button class="font-btn btn" onclick="">Align Center</button>
+                    <button class="font-btn btn" onclick="">Align Right</button>
+                    <button class="font-btn btn" onclick="">Text Color</button>
+                    <select class="fonts-lists" onchange="">
+                        <option value="Impact">Impact</option>
+                    </select>
+                </div>
 
-            <div class="file-actions bar flex">
-                <button class="file-btn btn">Save</button>
-                <button class="file-btn btn">Share to Facebook</button>
-                <button class="file-btn btn">Download</button>
+                <div class="file-actions bar flex">
+                    <button class="file-btn btn">Save</button>
+                    <button class="file-btn btn">Share to Facebook</button>
+                    <button class="file-btn btn">Download</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <section class="about">
 
