@@ -43,8 +43,8 @@ function setImg(meme) {
     return gImgs.find(img => img.id === meme.selectedImgId).url
 }
 
-function setLineTxt(text) {
-    gMeme.lines[0].txt = text  //with multi lines use forEach
+function setLineTxt(text, idx) {
+    gMeme.lines[idx].txt = text  //with multi lines use forEach
     // console.log(gMeme.lines[0].txt)
     console.log('gMeme-service = ', gMeme)
     return gMeme
@@ -67,6 +67,9 @@ function addNewLine(meme) {
         size: '',
         color: ''
     })
+
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    console.log(gMeme.selectedLineIdx)
 
     return gMeme
 }

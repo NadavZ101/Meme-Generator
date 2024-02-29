@@ -25,26 +25,31 @@ function onImgSelect(selectedImg) {
     const elImg = new Image
     elImg.src = setImg(meme)
     renderMeme(elImg)
-
-    // onMemeTxt(text)
-    // console.log(meme)
 }
 
 
 function onMemeTxt(text) {
-    const meme = setLineTxt(text)
+    const elMemeId = +document.querySelector('img').id
+    let elMeme = getMeme(elMemeId)
+    // console.log('onMemeTxt -> meme from DOM = ', elMeme)
+    const memeIdx = elMeme.selectedLineIdx
 
-    renderCanvasTxt(meme)
+    const meme = setLineTxt(text, memeIdx)
+    // Add IDX
+    console.log(meme)
+
+    renderCanvasTxt(meme, memeIdx)
 }
 
 function onTxtColor(color) {
     const meme = setTxtColor(color)
-
+    // Add IDX
     gCtx.strokeStyle = meme.lines[0].color
     renderCanvasTxt(meme)
 }
 
 function onChangeFontSize(dir) {
+    // Add Idx
     let fontSize = gCtx.font
 
     const meme = changeFontSize(fontSize, dir)
@@ -74,10 +79,10 @@ function updateGTextPos() {
     gTextPos.push(newLinePos)
 }
 
-function renderCanvasTxt(meme) {
+function renderCanvasTxt(meme, memeIdx) {
     //render gTextPos with a forEach Loop
-    gCtx.fillText(meme.lines[0].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
-    gCtx.strokeText(meme.lines[0].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+    gCtx.fillText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+    gCtx.strokeText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
 }
 
 // function renderCanvasTxt(meme) {
