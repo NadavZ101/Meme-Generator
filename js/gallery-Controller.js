@@ -9,30 +9,6 @@ function renderGallery() {
 
 
     const elGallery = document.querySelector('.memes-gallery')
-    elGallery.innerHTML = strImgsHTMLs
+    elGallery.innerHTML = strImgsHTMLs.join('')
 }
 
-
-// var gImgs = [
-//     {
-//         id: 1,
-//         url: 'meme-imgs-square/1.jpg',
-//         keywords: ['politics, funny']
-//     },
-//     {
-//         id: 2,
-//         url: 'meme-imgs-square/2.jpg',
-//         keywords: ['politics, funny']
-//     }
-// ]
-
-
-
-// function renderGallery() {
-//     const strImgsHTML = `
-//     <img src="meme-imgs-square/${1}.jpg" keywords="politics" onclick="onImgSelect(this)">
-//     <img id="2" src="meme-imgs-square/${2}.jpg" keywords="animals" onclick="onImgSelect(this)">
-//     `
-//     const elGallery = document.querySelector('.memes-gallery')
-//     elGallery.innerHTML = strImgsHTML
-// }

@@ -28,7 +28,6 @@ var gMeme = {
 }
 
 var gKeywords = ['politics', 'funny', 'sarcastic', 'crazy', 'animals']
-
 var imgNum = 18
 
 function getMeme(imgId) {
@@ -46,8 +45,22 @@ function setImg(meme) {
 
 function setLineTxt(text) {
     gMeme.lines[0].txt = text  //with multi lines use forEach
-    console.log(gMeme.lines[0].txt)
-    console.log(gMeme)
+    // console.log(gMeme.lines[0].txt)
+    console.log('gMeme-service = ', gMeme)
+    return gMeme
+}
+
+function addNewLine(meme) {
+    console.log('addNewLine-service ---> meme from DOM = ', meme)
+    gMeme = meme
+    console.log('addNewLine -> gMeme = ', gMeme)
+
+    gMeme.lines.push({
+        txt: '',
+        size: '',
+        color: ''
+    })
+
     return gMeme
 }
 
@@ -55,6 +68,8 @@ function setTxtColor(color) {
     console.log(color)
 
     gMeme.lines[0].color = color
+    console.log('gMeme-service = ', gMeme)
+
     return gMeme
 }
 

@@ -2,7 +2,10 @@
 
 let gElCanvas
 let gCtx
-let gTextStartPoss = { x: 70, y: 50 } // maybe use reduce to move to the next pos
+// let gTextPos = { x: 50, y: 20 } // maybe use reduce to move to the next pos
+let gTextPos = [
+    { x: 50, y: 20 },
+]
 
 
 function onInit() {
@@ -12,7 +15,6 @@ function onInit() {
 }
 
 function renderMeme(memeImg) {
-    console.log(memeImg)
     memeImg.onload = () =>
         gCtx.drawImage(memeImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
@@ -22,23 +24,22 @@ function onImgSelect(selectedImg) {
 
     const elImg = new Image
     elImg.src = setImg(meme)
-
     renderMeme(elImg)
+
+    // onMemeTxt(text)
+    // console.log(meme)
 }
 
 
 function onMemeTxt(text) {
     const meme = setLineTxt(text)
 
-    //  ---------- Move it to separeted function ---------------- //
-
-
     renderCanvasTxt(meme)
 }
 
 function onTxtColor(color) {
     const meme = setTxtColor(color)
-    console.log(meme)
+
     gCtx.strokeStyle = meme.lines[0].color
     renderCanvasTxt(meme)
 }
@@ -51,10 +52,38 @@ function onChangeFontSize(dir) {
     renderCanvasTxt(meme)
 }
 
-function renderCanvasTxt(meme) {
-    gCtx.fillText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
-    gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
+function onAddTxt() {
+    updateGTextPos()
+    const elMemeId = +document.querySelector('img').id
+
+    const meme = getMeme(elMemeId)
+    console.log('onAddTxt -> meme from DOM = ', meme)
+
+    addNewLine(meme)
+
+    // console.log(gTextPos)
+    // onMemeTxt(text)
+    // console.log(gTextPos)
+
 }
+
+function updateGTextPos() {
+    let lastIdx = gTextPos.length - 1
+    let newLinePos = { x: gTextPos[lastIdx].x + 15, y: gTextPos[lastIdx].y + 15 }
+
+    gTextPos.push(newLinePos)
+}
+
+function renderCanvasTxt(meme) {
+    //render gTextPos with a forEach Loop
+    gCtx.fillText(meme.lines[0].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+    gCtx.strokeText(meme.lines[0].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+}
+
+// function renderCanvasTxt(meme) {
+//     gCtx.fillText(meme.lines[0].txt, gTextPos.x, gTextPos.y)
+//     gCtx.strokeText(meme.lines[0].txt, gTextPos.x, gTextPos.y)
+// }
 
 function downloadMeme(elLink) {
     const meme = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
@@ -65,10 +94,11 @@ function setCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = '#e66465'
-    gCtx.fillStyle = 'lightsteelblue'
-    gCtx.font = '16px Arial'
+    //update the model to the default
+    gCtx.lineWidth = 1
+    gCtx.strokeStyle = '#black'
+    gCtx.fillStyle = 'white'
+    gCtx.font = '16px Impact'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
