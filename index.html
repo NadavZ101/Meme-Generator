@@ -69,9 +69,10 @@
 
                 <div class="fonts-bar flex direction-column">
                     <!-- Change to svg icons  -->
-                    <button class="font-btn btn" value="20px Arial" onclick="onIncreaseFont()">Enlarge
+                    <button class="font-btn btn" value="increase" onclick="onChangeFontSize(this.value)">Enlarge
                         Font</button>
-                    <button class="font-btn btn" onclick="">Decrease Font</button>
+                    <button class="font-btn btn" value="decrease" onclick="onChangeFontSize(this.value)">Decrease
+                        Font</button>
                     <button class="font-btn btn" onclick="">Align Left</button>
                     <button class="font-btn btn" onclick="">Align Center</button>
                     <button class="font-btn btn" onclick="">Align Right</button>

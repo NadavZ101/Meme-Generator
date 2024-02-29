@@ -33,7 +33,6 @@ var imgNum = 18
 
 function getMeme(imgId) {
     gMeme.selectedImgId = gImgs.find(img => img.id === imgId).id
-    console.log(gMeme)
     return gMeme
 }
 
@@ -59,11 +58,12 @@ function setTxtColor(color) {
     return gMeme
 }
 
-function enlargeFontSize(size) {
+function changeFontSize(size, dir) {
     const fontSize = size.split(' ')
 
     let newSize = parseInt(fontSize[0])
-    newSize += 1
+    if (dir === 'increase') newSize += 1
+    if (dir === 'decrease' && newSize > 1) newSize -= 1
 
     fontSize[0] = newSize + 'px'
 

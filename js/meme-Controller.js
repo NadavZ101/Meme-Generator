@@ -43,10 +43,10 @@ function onTxtColor(color) {
     renderCanvasTxt(meme)
 }
 
-function onIncreaseFont() {
+function onChangeFontSize(dir) {
     let fontSize = gCtx.font
 
-    const meme = enlargeFontSize(fontSize)
+    const meme = changeFontSize(fontSize, dir)
     gCtx.font = meme.lines[0].size
     renderCanvasTxt(meme)
 }
