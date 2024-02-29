@@ -44,23 +44,16 @@ function setImg(meme) {
 }
 
 function setLineTxt(text, idx) {
-    gMeme.lines[idx].txt = text  //with multi lines use forEach
-    // console.log(gMeme.lines[0].txt)
-    console.log('gMeme-service = ', gMeme)
+    gMeme.lines[idx].txt = text
+    // console.log('gMeme-service = ', gMeme)
     return gMeme
 }
-// // ------ ONE LINE - WORKS ---------------- //
-// function setLineTxt(text) {
-//     gMeme.lines[0].txt = text  //with multi lines use forEach
-//     // console.log(gMeme.lines[0].txt)
-//     console.log('gMeme-service = ', gMeme)
-//     return gMeme
-// }
+
 
 function addNewLine(meme) {
-    console.log('addNewLine-service ---> meme from DOM = ', meme)
+    // console.log('addNewLine-service ---> meme from DOM = ', meme)
     gMeme = meme
-    console.log('addNewLine -> gMeme = ', gMeme)
+    // console.log('addNewLine -> gMeme = ', gMeme)
 
     gMeme.lines.push({
         txt: '',
@@ -75,7 +68,6 @@ function addNewLine(meme) {
 }
 
 function setTxtColor(color, idx) {
-    console.log(color, idx)
 
     gMeme.lines[idx].color = color
     console.log('gMeme-service = ', gMeme)
@@ -94,8 +86,23 @@ function changeFontSize(size, dir, idx) {
     fontSize[0] = newSize + 'px'
 
     gMeme.lines[idx].size = fontSize.join(' ')
+    console.log(gMeme.lines[idx].size)
     return gMeme
 }
+
+function switchLine(meme) {
+    gMeme = meme
+
+    if (
+        gMeme.selectedLineIdx === gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx = 0
+    }
+    else {
+        gMeme.selectedLineIdx += 1
+    }
+    return gMeme
+}
+
 
 // function loadGallery() {
 //     gImgs.forEach()

@@ -57,12 +57,12 @@
 
             <div class="editor flex direction-column">
                 <label for="text">Meme text</label>
-                <input class="txt-input" type="text" id="text" placeholder="enter text"
-                    onchange="onMemeTxt(this.value)">
+                <input class="txt-input" type="text" id="text" onkeyup="onMemeTxt(this.value)" placeholder="enter text"
+                    onchange="onMemeTxt(this.value)" onclick="clearInput()">
 
                 <div class="txt-actions-bar flex">
                     <!-- Change TO SVG ICONS  -->
-                    <button class="txt-editor-btn btn" onclick="">Switch Line</button>
+                    <button class="txt-editor-btn btn" onclick="onSwitchLine()">Switch Line</button>
                     <button class="txt-editor-btn" onclick="onAddLine()">Add Line</button>
                     <button class="txt-editor-btn btn" onclick="">Delete Line</button>
                 </div>

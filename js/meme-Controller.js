@@ -4,7 +4,7 @@ let gElCanvas
 let gCtx
 // let gTextPos = { x: 50, y: 20 } // maybe use reduce to move to the next pos
 let gTextPos = [
-    { x: 50, y: 20 },
+    { lineIdx: 1, x: 50, y: 20 },
 ]
 
 
@@ -27,36 +27,31 @@ function onImgSelect(selectedImg) {
     renderMeme(elImg)
 }
 
-
 function onMemeTxt(text) {
-    // const elMemeId = +document.querySelector('img').id
-    // let elMeme = getMeme(elMemeId)
-    // console.log('onMemeTxt -> meme from DOM = ', elMeme)
-    const memeIdx = onGetElMemeIdx()
+    const memeLineIdx = onGetElMemeLineIdx()
 
-    const meme = setLineTxt(text, memeIdx)
-    console.log(meme)
+    const meme = setLineTxt(text, memeLineIdx)
 
-    renderCanvasTxt(meme, memeIdx)
+    renderCanvasTxt(meme, memeLineIdx)
 }
 
 function onTxtColor(color) {
-    const memeIdx = onGetElMemeIdx()
-    const meme = setTxtColor(color, memeIdx)
-    // Add IDX
-    gCtx.strokeStyle = meme.lines[memeIdx].color
-    renderCanvasTxt(meme, memeIdx)
+    const memeLineIdx = onGetElMemeLineIdx()
+    const meme = setTxtColor(color, memeLineIdx)
+
+    gCtx.strokeStyle = meme.lines[memeLineIdx].color
+    renderCanvasTxt(meme, memeLineIdx)
 }
 
 function onChangeFontSize(dir) {
-    const memeIdx = onGetElMemeIdx()
-    console.log(memeIdx)
+    const memeLineIdx = onGetElMemeLineIdx()
 
     let fontSize = gCtx.font
 
-    const meme = changeFontSize(fontSize, dir, memeIdx)
-    gCtx.font = meme.lines[memeIdx].size
-    renderCanvasTxt(meme, memeIdx)
+    const meme = changeFontSize(fontSize, dir, memeLineIdx)
+    console.log(meme)
+    gCtx.font = meme.lines[memeLineIdx].size
+    renderCanvasTxt(meme, memeLineIdx)
 }
 
 function onAddLine() {
@@ -70,34 +65,44 @@ function onAddLine() {
     // console.log(gTextPos)
     // onMemeTxt(text)
     // console.log(gTextPos)
+}
 
+function onSwitchLine() {
+    const elMemeId = +document.querySelector('img').id
+    let meme = getMeme(elMemeId)
+    switchLine(meme)
+    console.log('meme after switching line = ', meme)
 }
 
 function updateGTextPos() {
     let lastIdx = gTextPos.length - 1
-    let newLinePos = { x: gTextPos[lastIdx].x + 15, y: gTextPos[lastIdx].y + 15 }
+    let newLinePos = { lineIdx: gTextPos[lastIdx].lineIdx + 1, x: gTextPos[lastIdx].x + 15, y: gTextPos[lastIdx].y + 15 }
 
     gTextPos.push(newLinePos)
+    console.log(gTextPos)
 }
 
-function renderCanvasTxt(meme, memeIdx) {
-    //render gTextPos with a forEach Loop
-    gCtx.fillText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
-    gCtx.strokeText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+
+
+function renderCanvasTxt(meme, memeLineIdx) {
+    console.log(meme)
+    gCtx.fillText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
+    gCtx.strokeText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
 }
 
-function onGetElMemeIdx() {
+function onGetElMemeLineIdx() {
     const elMemeId = +document.querySelector('img').id
     let elMeme = getMeme(elMemeId)
-    // console.log('onMemeTxt -> meme from DOM = ', elMeme)
-    const memeIdx = elMeme.selectedLineIdx
-    return memeIdx
+
+    const memeLineIdx = elMeme.selectedLineIdx
+    return memeLineIdx
 }
 
-// function renderCanvasTxt(meme) {
-//     gCtx.fillText(meme.lines[0].txt, gTextPos.x, gTextPos.y)
-//     gCtx.strokeText(meme.lines[0].txt, gTextPos.x, gTextPos.y)
-// }
+function clearInput() {
+
+    const elMemeTxt = document.querySelector('.txt-input')
+    elMemeTxt.value = ''
+}
 
 function downloadMeme(elLink) {
     const meme = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
@@ -116,11 +121,12 @@ function setCanvas() {
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
-    console.log(gCtx)
+    // console.log(gCtx)
 
 }
 
 // function toggleHidden(ev) {
+//hidden the containers ---> gallery / meme editor ---> not the sections itself
 //     console.log(ev.classList.value)
 //     const elMemeEditor = document.querySelector('.meme-flex-container')
 //     const elGallery = document.querySelector('.gallery')
