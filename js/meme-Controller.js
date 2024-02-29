@@ -29,38 +29,39 @@ function onImgSelect(selectedImg) {
 
 
 function onMemeTxt(text) {
-    const elMemeId = +document.querySelector('img').id
-    let elMeme = getMeme(elMemeId)
+    // const elMemeId = +document.querySelector('img').id
+    // let elMeme = getMeme(elMemeId)
     // console.log('onMemeTxt -> meme from DOM = ', elMeme)
-    const memeIdx = elMeme.selectedLineIdx
+    const memeIdx = onGetElMemeIdx()
 
     const meme = setLineTxt(text, memeIdx)
-    // Add IDX
     console.log(meme)
 
     renderCanvasTxt(meme, memeIdx)
 }
 
 function onTxtColor(color) {
-    const meme = setTxtColor(color)
+    const memeIdx = onGetElMemeIdx()
+    const meme = setTxtColor(color, memeIdx)
     // Add IDX
-    gCtx.strokeStyle = meme.lines[0].color
-    renderCanvasTxt(meme)
+    gCtx.strokeStyle = meme.lines[memeIdx].color
+    renderCanvasTxt(meme, memeIdx)
 }
 
 function onChangeFontSize(dir) {
-    // Add Idx
+    const memeIdx = onGetElMemeIdx()
+    console.log(memeIdx)
+
     let fontSize = gCtx.font
 
-    const meme = changeFontSize(fontSize, dir)
-    gCtx.font = meme.lines[0].size
-    renderCanvasTxt(meme)
+    const meme = changeFontSize(fontSize, dir, memeIdx)
+    gCtx.font = meme.lines[memeIdx].size
+    renderCanvasTxt(meme, memeIdx)
 }
 
 function onAddLine() {
     updateGTextPos()
     const elMemeId = +document.querySelector('img').id
-
     let meme = getMeme(elMemeId)
     console.log('onAddLine -> meme from DOM = ', meme)
 
@@ -83,6 +84,14 @@ function renderCanvasTxt(meme, memeIdx) {
     //render gTextPos with a forEach Loop
     gCtx.fillText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
     gCtx.strokeText(meme.lines[memeIdx].txt, gTextPos[gTextPos.length - 1].x, gTextPos[gTextPos.length - 1].y)
+}
+
+function onGetElMemeIdx() {
+    const elMemeId = +document.querySelector('img').id
+    let elMeme = getMeme(elMemeId)
+    // console.log('onMemeTxt -> meme from DOM = ', elMeme)
+    const memeIdx = elMeme.selectedLineIdx
+    return memeIdx
 }
 
 // function renderCanvasTxt(meme) {

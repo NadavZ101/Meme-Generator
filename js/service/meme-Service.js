@@ -74,16 +74,17 @@ function addNewLine(meme) {
     return gMeme
 }
 
-function setTxtColor(color) {
-    console.log(color)
+function setTxtColor(color, idx) {
+    console.log(color, idx)
 
-    gMeme.lines[0].color = color
+    gMeme.lines[idx].color = color
     console.log('gMeme-service = ', gMeme)
 
     return gMeme
 }
 
-function changeFontSize(size, dir) {
+function changeFontSize(size, dir, idx) {
+    console.log('idx = ', idx)
     const fontSize = size.split(' ')
 
     let newSize = parseInt(fontSize[0])
@@ -92,7 +93,7 @@ function changeFontSize(size, dir) {
 
     fontSize[0] = newSize + 'px'
 
-    gMeme.lines[0].size = fontSize.join(' ')
+    gMeme.lines[idx].size = fontSize.join(' ')
     return gMeme
 }
 
