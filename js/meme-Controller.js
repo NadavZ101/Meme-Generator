@@ -20,6 +20,8 @@ function renderMeme(memeImg) {
 }
 
 function onImgSelect(selectedImg) {
+    hideGallery()
+    showEditor()
     const meme = getMeme(selectedImg)
 
     const elImg = new Image
@@ -82,8 +84,6 @@ function updateGTextPos() {
     console.log(gTextPos)
 }
 
-
-
 function renderCanvasTxt(meme, memeLineIdx) {
     console.log(meme)
     gCtx.fillText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
@@ -125,35 +125,42 @@ function setCanvas() {
 
 }
 
-// function toggleHidden(ev) {
-//hidden the containers ---> gallery / meme editor ---> not the sections itself
-//     console.log(ev.classList.value)
-//     const elMemeEditor = document.querySelector('.meme-flex-container')
-//     const elGallery = document.querySelector('.gallery')
-//     const elAbout = document.querySelector('.about')
+function hideGallery() {
+    const elGallery = document.querySelector('.gallery')
+    elGallery.style.display = 'none'
+}
 
+function showEditor() {
+    const elMemeEditor = document.querySelector('.meme-container')
+    elMemeEditor.style.display = 'flex'
+    elMemeEditor.style.justifyContent = 'center'
+    elMemeEditor.style.alignItems = 'center'
+}
 
-//     if (ev.classList.value === 'gallery-btn btn') {
-//         elMemeEditor.classList.remove('meme-flex-container')
-//         elGallery.classList.add('gallery')
-//         // elAbout.style.display = 'none'
+function toggleHidden(ev) {
+    const elMemeEditor = document.querySelector('.meme-container')
+    const elGallery = document.querySelector('.gallery')
+    const elAbout = document.querySelector('.about')
 
-//     }
+    if (ev.classList.value === 'gallery-btn btn') {
+        elGallery.style.display = 'block'
 
-//     if (ev.classList.value === 'editor-btn btn') {
-//         elMemeEditor.classList.add('meme-flex-container')
-//         elGallery.classList.remove('gallery')
-//         renderMeme()
-//         // elAbout.style.display = 'none'
-//     }
+        elMemeEditor.style.display = 'none'
+        elAbout.style.display = 'none'
 
-//     if (ev.classList.value === 'about-btn btn') {
-//         elAbout.style.display = 'flex'
-//         elMemeEditor.style.display = 'none'
-//         elGallery.style.display = 'none'
-//     }
+    }
 
-// }
+    if (ev.classList.value === 'editor-btn btn') {
+        hideGallery()
+        showEditor()
+    }
+
+    if (ev.classList.value === 'about-btn btn') {
+        hideGallery()
+        elMemeEditor.style.display = 'none'
+        elAbout.style.display = 'block'
+    }
+}
 
 
 
