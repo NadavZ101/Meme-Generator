@@ -1,12 +1,17 @@
-* {
+/* * {
     box-sizing: border-box;
 
-    /* check later if needed */
+} */
+
+html {
+    background: linear-gradient(to right, #8360c3, #e0936f, #2caa82);
+
 }
 
 body {
     font-size: 1rem;
-    /* margin: 0; */
+    margin: 0;
+
 }
 
 h2 {

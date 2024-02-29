@@ -11,7 +11,6 @@ let gTextPos = [
 function onInit() {
     setCanvas()
     renderGallery()
-
 }
 
 function renderMeme(memeImg) {
@@ -63,10 +62,8 @@ function onAddLine() {
     console.log('onAddLine -> meme from DOM = ', meme)
 
     meme = addNewLine(meme)
+    drawFrame()
     console.log('onAddLine -> meme from service = ', meme)
-    // console.log(gTextPos)
-    // onMemeTxt(text)
-    // console.log(gTextPos)
 }
 
 function onSwitchLine() {
@@ -76,18 +73,32 @@ function onSwitchLine() {
     console.log('meme after switching line = ', meme)
 }
 
+function drawFrame() {
+    const memeLineIdx = onGetElMemeLineIdx()
+
+    gCtx.beginPath();
+    gCtx.rect(gTextPos[memeLineIdx].x - 20, gTextPos[memeLineIdx].y - 20, 150, 30);
+    gCtx.stroke();
+
+}
+
 function updateGTextPos() {
     let lastIdx = gTextPos.length - 1
-    let newLinePos = { lineIdx: gTextPos[lastIdx].lineIdx + 1, x: gTextPos[lastIdx].x + 15, y: gTextPos[lastIdx].y + 15 }
+    let newLinePos = { lineIdx: gTextPos[lastIdx].lineIdx + 1, x: gTextPos[lastIdx].x + 20, y: gTextPos[lastIdx].y + 20 }
 
     gTextPos.push(newLinePos)
     console.log(gTextPos)
 }
 
 function renderCanvasTxt(meme, memeLineIdx) {
-    console.log(meme)
     gCtx.fillText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
     gCtx.strokeText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
+}
+
+function onGetElMeme() {
+    const elMemeId = +document.querySelector('img').id
+    let elMeme = getMeme(elMemeId)
+    return elMeme
 }
 
 function onGetElMemeLineIdx() {
@@ -153,6 +164,8 @@ function toggleHidden(ev) {
     if (ev.classList.value === 'editor-btn btn') {
         hideGallery()
         showEditor()
+        elAbout.style.display = 'none'
+
     }
 
     if (ev.classList.value === 'about-btn btn') {

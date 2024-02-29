@@ -1,19 +1,7 @@
 'use strict'
 
-// var gImgs = [{id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat']}]
 var imgNum = 18
 var gImgs = []
-//     {
-//         id: 1,
-//         url: 'meme-imgs-square/1.jpg',
-//         keywords: ['politics, funny']
-//     },
-//     {
-//         id: 2,
-//         url: 'meme-imgs-square/2.jpg',
-//         keywords: ['politics, funny']
-//     }
-// ]
 _createImgs(imgNum)
 
 var gMeme = {
