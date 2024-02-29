@@ -49,15 +49,14 @@ function setLineTxt(text) {
     gMeme.lines[0].txt = text  //with multi lines use forEach
     console.log(gMeme.lines[0].txt)
     console.log(gMeme)
-    return (gMeme)
+    return gMeme
 }
 
 function setTxtColor(color) {
     console.log(color)
 
-    console.log(gMeme)
-    console.log(gMeme.lines[2].color)
-    gMeme.lines[2].color = color
+    gMeme.lines[0].color = color
+    return gMeme
 }
 
 // function loadGallery() {

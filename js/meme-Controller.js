@@ -33,7 +33,7 @@ function onMemeTxt(text) {
 
     //  ---------- Move it to separeted function ---------------- //
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'orange'         //will come from the btn from service
+    gCtx.strokeStyle = '#e66465'         //will come from the btn from service
 
     gCtx.fillStyle = 'lightsteelblue'   //will come from the btn from service
 
@@ -46,10 +46,10 @@ function onMemeTxt(text) {
 }
 
 function onTxtColor(color) {
-    console.log(color)
-    // const meme = getMemeImg(selectedImg)
     const meme = setTxtColor(color)
-
+    console.log(meme)
+    gCtx.strokeStyle = meme.lines[0].color
+    gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
 }
 
 function downloadMeme(elLink) {
