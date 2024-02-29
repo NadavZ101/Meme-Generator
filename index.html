@@ -74,7 +74,9 @@
                     <button class="font-btn btn" onclick="">Align Left</button>
                     <button class="font-btn btn" onclick="">Align Center</button>
                     <button class="font-btn btn" onclick="">Align Right</button>
-                    <button class="font-btn btn" onclick="">Text Color</button>
+                    <label for="color">Color</label>
+                    <input class="font-btn btn" type="color" id="color" value="#e66465"
+                        oninput="onTxtColor(this.value)" />
                     <select class="fonts-lists" onchange="">
                         <option value="Impact">Impact</option>
                     </select>

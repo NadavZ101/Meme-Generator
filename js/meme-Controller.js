@@ -11,30 +11,20 @@ function onInit() {
 
 }
 
-
 function renderMeme(memeImg) {
     console.log(memeImg)
     memeImg.onload = () =>
         gCtx.drawImage(memeImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function onImgSelect(selectedImg, img) {
-    // const elImg = img // receiving the <img> from the galleryController render func
+function onImgSelect(selectedImg) {
+    const meme = getMeme(selectedImg)
 
     const elImg = new Image
-    console.log(elImg)
-    elImg.src = getMemeImg(selectedImg)
+    elImg.src = setImg(meme)
+
     renderMeme(elImg)
 }
-
-// function onMemeImg({ selectedImgId }) {
-//     const elImg = new Image()           //the selected image from the gallery
-//     elImg.src = getMemeImg(selectedImgId)
-
-//     return elImg
-//     // elImg.onload = () =>
-//     //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-// }
 
 
 function onMemeTxt(text) {
@@ -55,11 +45,17 @@ function onMemeTxt(text) {
     gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y) // the Render
 }
 
+function onTxtColor(color) {
+    console.log(color)
+    // const meme = getMemeImg(selectedImg)
+    const meme = setTxtColor(color)
+
+}
+
 function downloadMeme(elLink) {
     const meme = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = meme
 }
-
 
 function setCanvas() {
     gElCanvas = document.querySelector('canvas')

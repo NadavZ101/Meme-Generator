@@ -1,5 +1,7 @@
 'use strict'
 
+// var gImgs = [{id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat']}]
+
 var gImgs = [
     {
         id: 1,
@@ -14,7 +16,7 @@ var gImgs = [
 ]
 
 var gMeme = {
-    selectedImgId: 2,
+    selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
         {
@@ -29,7 +31,9 @@ var gKeywords = ['politics', 'funny', 'sarcastic', 'crazy', 'animals']
 
 var imgNum = 18
 
-function getMeme() {
+function getMeme(imgId) {
+    gMeme.selectedImgId = gImgs.find(img => img.id === imgId).id
+    console.log(gMeme)
     return gMeme
 }
 
@@ -37,15 +41,23 @@ function getImgs() {
     return gImgs
 }
 
-function getMemeImg(imgId) {
-    console.log(imgId)
-    return gImgs.find(img => img.id === imgId).url
+function setImg(meme) {
+    return gImgs.find(img => img.id === meme.selectedImgId).url
 }
 
 function setLineTxt(text) {
     gMeme.lines[0].txt = text  //with multi lines use forEach
     console.log(gMeme.lines[0].txt)
-    return (getMeme())
+    console.log(gMeme)
+    return (gMeme)
+}
+
+function setTxtColor(color) {
+    console.log(color)
+
+    console.log(gMeme)
+    console.log(gMeme.lines[2].color)
+    gMeme.lines[2].color = color
 }
 
 // function loadGallery() {
