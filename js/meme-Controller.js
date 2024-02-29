@@ -52,15 +52,15 @@ function onChangeFontSize(dir) {
     renderCanvasTxt(meme)
 }
 
-function onAddTxt() {
+function onAddLine() {
     updateGTextPos()
     const elMemeId = +document.querySelector('img').id
 
-    const meme = getMeme(elMemeId)
-    console.log('onAddTxt -> meme from DOM = ', meme)
+    let meme = getMeme(elMemeId)
+    console.log('onAddLine -> meme from DOM = ', meme)
 
-    addNewLine(meme)
-
+    meme = addNewLine(meme)
+    console.log('onAddLine -> meme from service = ', meme)
     // console.log(gTextPos)
     // onMemeTxt(text)
     // console.log(gTextPos)
