@@ -28,27 +28,31 @@ function onImgSelect(selectedImg) {
 
 
 function onMemeTxt(text) {
-    console.log(text)
     const meme = setLineTxt(text)
 
     //  ---------- Move it to separeted function ---------------- //
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = '#e66465'         //will come from the btn from service
 
-    gCtx.fillStyle = 'lightsteelblue'   //will come from the btn from service
 
-    gCtx.font = '20px Arial'            //will come from the btn from service
-    gCtx.textAlign = 'center'           //will come from the btn from service
-    gCtx.textBaseline = 'middle'        //will come from the btn from service
-
-    gCtx.fillText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
-    gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y) // the Render
+    renderCanvasTxt(meme)
 }
 
 function onTxtColor(color) {
     const meme = setTxtColor(color)
     console.log(meme)
     gCtx.strokeStyle = meme.lines[0].color
+    renderCanvasTxt(meme)
+}
+
+function onIncreaseFont() {
+    let fontSize = gCtx.font
+
+    const meme = enlargeFontSize(fontSize)
+    gCtx.font = meme.lines[0].size
+    renderCanvasTxt(meme)
+}
+
+function renderCanvasTxt(meme) {
+    gCtx.fillText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
     gCtx.strokeText(meme.lines[0].txt, gTextStartPoss.x, gTextStartPoss.y)
 }
 
@@ -60,6 +64,16 @@ function downloadMeme(elLink) {
 function setCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = '#e66465'
+    gCtx.fillStyle = 'lightsteelblue'
+    gCtx.font = '16px Arial'
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
+
+    console.log(gCtx)
+
 }
 
 // function toggleHidden(ev) {

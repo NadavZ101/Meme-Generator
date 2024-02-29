@@ -21,7 +21,7 @@ var gMeme = {
     lines: [
         {
             txt: '',
-            size: null,
+            size: '',
             color: ''
         }
     ]
@@ -56,6 +56,18 @@ function setTxtColor(color) {
     console.log(color)
 
     gMeme.lines[0].color = color
+    return gMeme
+}
+
+function enlargeFontSize(size) {
+    const fontSize = size.split(' ')
+
+    let newSize = parseInt(fontSize[0])
+    newSize += 1
+
+    fontSize[0] = newSize + 'px'
+
+    gMeme.lines[0].size = fontSize.join(' ')
     return gMeme
 }
 
