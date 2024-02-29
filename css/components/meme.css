@@ -6,6 +6,7 @@
     grid-area:
         "canvas editor";
     gap: 10px; */
+
     gap: 10px;
     place-items: center;
     width: 80vh;

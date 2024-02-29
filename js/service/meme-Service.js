@@ -33,7 +33,6 @@ function setImg(meme) {
 
 function setLineTxt(text, idx) {
     gMeme.lines[idx].txt = text
-    // console.log('gMeme-service = ', gMeme)
     return gMeme
 }
 
@@ -74,7 +73,6 @@ function changeFontSize(size, dir, idx) {
     fontSize[0] = newSize + 'px'
 
     gMeme.lines[idx].size = fontSize.join(' ')
-    console.log(gMeme.lines[idx].size)
     return gMeme
 }
 
