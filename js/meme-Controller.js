@@ -2,7 +2,7 @@
 
 let gElCanvas
 let gCtx
-// let gTextPos = { x: 50, y: 20 } // maybe use reduce to move to the next pos
+
 let gTextPos = [
     { lineIdx: 1, x: 50, y: 20 },
 ]
