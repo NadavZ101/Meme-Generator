@@ -20,7 +20,6 @@ function renderMeme() {
     const meme = getMeme()
     const memeImg = getImg()
 
-
     const elImg = new Image
     elImg.src = memeImg
 
@@ -37,8 +36,8 @@ function drawTxt(meme) {
     console.log(memeLines)
 
     memeLines.forEach((line, idx) => {
-        gCtx.lineWidth = 1
-        gCtx.strokeStyle = line.color || 'green'
+        gCtx.lineWidth = 0.5
+        gCtx.strokeStyle = line.color || 'white'
         gCtx.fillStyle = 'lightgrey'
         gCtx.font = `${line.size}px Impact` || '20px Impact'
         gCtx.textBaseline = 'middle'
@@ -48,6 +47,21 @@ function drawTxt(meme) {
 
         gCtx.fillText(line.txt, linePos.x, linePos.y)
         gCtx.strokeText(line.txt, linePos.x, linePos.y)
+
+        // Frame
+        if (meme.selectedLineIdx === idx) {
+            const txtWidth = gCtx.measureText(line.txt).width;
+            const txtHeight = parseInt(gCtx.font)
+
+            const frameWidth = txtWidth + 15;
+            const frameHeight = txtHeight + 15;
+
+            gCtx.beginPath()
+            gCtx.rect(linePos.x - 10, linePos.y - 15, frameWidth, frameHeight);
+            gCtx.stroke()
+            gCtx.closePath()
+        }
+
     })
 }
 
@@ -76,7 +90,7 @@ function onAddLine() {
 
 function updateGLinesPos() {
     let lastIdx = gLinesPos.length - 1
-    let newLinePos = { lineIdx: gLinesPos[lastIdx].lineIdx + 1, x: gLinesPos[lastIdx].x + 20, y: gLinesPos[lastIdx].y + 20 }
+    let newLinePos = { lineIdx: gLinesPos[lastIdx].lineIdx + 1, x: gLinesPos[lastIdx].x + 40, y: gLinesPos[lastIdx].y + 40 }
 
     gLinesPos.push(newLinePos)
 }
@@ -86,20 +100,7 @@ function onSwitchLine() {
     renderMeme()
 }
 
-function drawFrame(memeTxt) {
-    const memeLineIdx = onGetElMemeLineIdx()
 
-    const txtWidth = gCtx.measureText(memeTxt).width;
-    const txtHeight = parseInt(gCtx.font)
-
-    const frameWidth = txtWidth + 10;
-    const frameHeight = txtHeight + 10;
-
-    gCtx.beginPath()
-    gCtx.rect(gTextPos[memeLineIdx].x + 20, gTextPos[memeLineIdx].y + 20, frameWidth, frameHeight);
-    gCtx.stroke()
-    gCtx.closePath()
-}
 
 function clearInput() {
 
