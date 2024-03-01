@@ -3,75 +3,87 @@
 let gElCanvas
 let gCtx
 
-let gTextPos = [
-    { lineIdx: 1, x: 50, y: 20 },
+let gLinesPos = [
+    { lineIdx: 1, x: 10, y: 20 },
 ]
+
+let gCurrLine = 0
 
 
 function onInit() {
     setCanvas()
     renderGallery()
+    renderMeme()
 }
 
-function renderMeme(memeImg) {
-    memeImg.onload = () =>
-        gCtx.drawImage(memeImg, 0, 0, gElCanvas.width, gElCanvas.height)
-}
+function renderMeme() {
+    const meme = getMeme()
+    const memeImg = getImg()
 
-function onImgSelect(selectedImg) {
-    hideGallery()
-    showEditor()
-    const meme = getMeme(selectedImg)
 
     const elImg = new Image
-    elImg.src = setImg(meme)
-    renderMeme(elImg)
+    elImg.src = memeImg
+
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawTxt(meme)
+    }
+
+}
+
+function drawTxt(meme) {
+    console.log(meme)
+    const memeLines = meme.lines
+    console.log(memeLines)
+
+    memeLines.forEach((line, idx) => {
+        gCtx.lineWidth = 1
+        gCtx.strokeStyle = line.color || 'green'
+        gCtx.fillStyle = 'lightgrey'
+        gCtx.font = `${line.size}px Impact` || '20px Impact'
+        gCtx.textBaseline = 'middle'
+        gCtx.textAlign = 'left'
+
+        const linePos = gLinesPos[idx]
+
+        gCtx.fillText(line.txt, linePos.x, linePos.y)
+        gCtx.strokeText(line.txt, linePos.x, linePos.y)
+    })
 }
 
 function onMemeTxt(text) {
-    const memeLineIdx = onGetElMemeLineIdx()
-
-    const meme = setLineTxt(text, memeLineIdx)
-
-    renderCanvasTxt(meme, memeLineIdx)
+    console.log('memeTxt currLine = ', gCurrLine)
+    setLineTxt(text, gCurrLine)
+    renderMeme()
 }
 
 function onTxtColor(color) {
-    const memeLineIdx = onGetElMemeLineIdx()
-    const meme = setTxtColor(color, memeLineIdx)
-
-    gCtx.strokeStyle = meme.lines[memeLineIdx].color
-    renderCanvasTxt(meme, memeLineIdx)
+    setTxtColor(color, gCurrLine)
+    renderMeme()
 }
 
 function onChangeFontSize(dir) {
-    const memeLineIdx = onGetElMemeLineIdx()
-
-    let fontSize = gCtx.font
-    console.log(fontSize)
-    const meme = changeFontSize(fontSize, dir, memeLineIdx)
-    console.log(meme)
-
-    console.log(gCtx)
-
-    gCtx.font = meme.lines[memeLineIdx].size
-    renderCanvasTxt(meme, memeLineIdx)
-
+    console.log(dir)
+    changeFontSize(dir, gCurrLine)
+    renderMeme()
 }
 
 function onAddLine() {
-    updateGTextPos()
-    const elMemeId = +document.querySelector('img').id
-    let meme = getMeme(elMemeId)
+    updateGLinesPos()
+    gCurrLine = addNewLine()
+    renderMeme()
+}
 
-    meme = addNewLine(meme)
+function updateGLinesPos() {
+    let lastIdx = gLinesPos.length - 1
+    let newLinePos = { lineIdx: gLinesPos[lastIdx].lineIdx + 1, x: gLinesPos[lastIdx].x + 20, y: gLinesPos[lastIdx].y + 20 }
+
+    gLinesPos.push(newLinePos)
 }
 
 function onSwitchLine() {
-    const elMemeId = +document.querySelector('img').id
-    let meme = getMeme(elMemeId)
-    switchLine(meme)
-    console.log('meme after switching line = ', meme)
+    gCurrLine = switchLine()
+    renderMeme()
 }
 
 function drawFrame(memeTxt) {
@@ -89,36 +101,6 @@ function drawFrame(memeTxt) {
     gCtx.closePath()
 }
 
-function updateGTextPos() {
-    let lastIdx = gTextPos.length - 1
-    let newLinePos = { lineIdx: gTextPos[lastIdx].lineIdx + 1, x: gTextPos[lastIdx].x + 20, y: gTextPos[lastIdx].y + 20 }
-
-    gTextPos.push(newLinePos)
-    console.log(gTextPos)
-}
-
-function renderCanvasTxt(meme, memeLineIdx) {
-
-    gCtx.beginPath()
-    gCtx.fillText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
-    gCtx.strokeText(meme.lines[memeLineIdx].txt, gTextPos[memeLineIdx].x, gTextPos[memeLineIdx].y)
-    gCtx.closePath()
-}
-
-function onGetElMeme() {
-    const elMemeId = +document.querySelector('img').id
-    let elMeme = getMeme(elMemeId)
-    return elMeme
-}
-
-function onGetElMemeLineIdx() {
-    const elMemeId = +document.querySelector('img').id
-    let elMeme = getMeme(elMemeId)
-
-    const memeLineIdx = elMeme.selectedLineIdx
-    return memeLineIdx
-}
-
 function clearInput() {
 
     const elMemeTxt = document.querySelector('.txt-input')
@@ -134,23 +116,7 @@ function setCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    console.log(gCtx)
-
-    //update the model to the default
-    // gCtx.lineWidth = 1
-    gCtx.strokeStyle = '#black'
-    gCtx.fillStyle = 'white'
-    gCtx.font = '16px Impact'
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
-
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-
-    // gCtx.imageSmoothingEnabled = false;
-    // gCtx.webkitImageSmoothingEnabled = false;
-    // gCtx.mozImageSmoothingEnabled = false;
-    // console.log(gCtx)
-
 }
 
 function hideGallery() {

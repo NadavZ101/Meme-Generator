@@ -1,92 +1,87 @@
 'use strict'
 
-var imgNum = 18
-var gImgs = []
+let imgNum = 18
+let gImgs = []
 _createImgs(imgNum)
+
+let gSelectedImgIdx = 0
 
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: '',
-            size: '',
-            color: ''
+            txt: 'Enter A Text',
+            size: 20,
+            color: 'orange'
         }
     ]
 }
 
 var gKeywords = ['politics', 'funny', 'sarcastic', 'crazy', 'animals']
 
-function getMeme(imgId) {
-    gMeme.selectedImgId = gImgs.find(img => img.id === imgId).id
+function getMeme() {
+    // console.log(gMeme)
     return gMeme
 }
 
-function getImgs() {
-    return gImgs
-}
-
-function setImg(meme) {
-    return gImgs.find(img => img.id === meme.selectedImgId).url
+function getImg() {
+    return gImgs[gSelectedImgIdx].url
 }
 
 function setLineTxt(text, idx) {
+    console.log(idx)
     gMeme.lines[idx].txt = text
-    return gMeme
+    console.log(gMeme.lines[idx].txt)
 }
 
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+    gSelectedImgIdx = gImgs.findIndex(img => img.id === imgId)
+}
 
-function addNewLine(meme) {
-    // console.log('addNewLine-service ---> meme from DOM = ', meme)
-    gMeme = meme
-    // console.log('addNewLine -> gMeme = ', gMeme)
+function setTxtColor(color, idx) {
+    gMeme.lines[idx].color = color
+    console.log('gMeme-service = ', gMeme)
+}
+
+function changeFontSize(dir, idx) {
+    if (dir === 'increase') {
+        gMeme.lines[idx].size += 1
+    }
+    if (dir === 'decrease' && gMeme.lines[0].size > 0) {
+        gMeme.lines[idx].size -= 1
+    }
+    if (gMeme.lines[idx].size === 0) return
+    console.log('gMeme - changeFont', gMeme)
+}
+
+function addNewLine() {
 
     gMeme.lines.push({
         txt: '',
-        size: '',
+        size: 20,
         color: ''
     })
 
     gMeme.selectedLineIdx = gMeme.lines.length - 1
-    console.log(gMeme.selectedLineIdx)
-
-    return gMeme
+    return gMeme.selectedLineIdx
 }
 
-function setTxtColor(color, idx) {
+function switchLine() {
+    if (gMeme.selectedLineIdx !== gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx += 1
 
-    gMeme.lines[idx].color = color
-    console.log('gMeme-service = ', gMeme)
-
-    return gMeme
-}
-
-function changeFontSize(size, dir, idx) {
-    console.log('idx = ', idx)
-    const fontSize = size.split(' ')
-
-    let newSize = parseInt(fontSize[0])
-    if (dir === 'increase') newSize += 1
-    if (dir === 'decrease' && newSize > 1) newSize -= 1
-
-    fontSize[0] = newSize + 'px'
-
-    gMeme.lines[idx].size = fontSize.join(' ')
-    return gMeme
-}
-
-function switchLine(meme) {
-    gMeme = meme
-
-    if (
-        gMeme.selectedLineIdx === gMeme.lines.length - 1) {
-        gMeme.selectedLineIdx = 0
     }
     else {
-        gMeme.selectedLineIdx += 1
+        gMeme.selectedLineIdx = 0
     }
-    return gMeme
+    return gMeme.selectedLineIdx
+}
+
+function loadGallery() {
+    _createImgs(imgNum)
+    return gImgs
 }
 
 function _createImgs(imgNum) {
