@@ -3,8 +3,8 @@
 let gElCanvas
 let gCtx
 
-let gLinesPos = [
-    { lineIdx: 1, x: 10, y: 20 },
+let gLines = [
+    { lineIdx: 0, x: 10, y: 20, width: 0, height: 0 },
 ]
 
 let gCurrLine = 0
@@ -31,38 +31,61 @@ function renderMeme() {
 }
 
 function drawTxt(meme) {
-    console.log(meme)
     const memeLines = meme.lines
-    console.log(memeLines)
 
     memeLines.forEach((line, idx) => {
-        gCtx.lineWidth = 0.5
-        gCtx.strokeStyle = line.color || 'white'
-        gCtx.fillStyle = 'lightgrey'
+        gCtx.lineWidth = 1
+        gCtx.strokeStyle = 'white'
+        gCtx.fillStyle = line.color || 'green'
         gCtx.font = `${line.size}px Impact` || '20px Impact'
         gCtx.textBaseline = 'middle'
         gCtx.textAlign = 'left'
 
-        const linePos = gLinesPos[idx]
+        const linePos = gLines[idx]
 
-        gCtx.fillText(line.txt, linePos.x, linePos.y)
-        gCtx.strokeText(line.txt, linePos.x, linePos.y)
+        const txtWidth = gCtx.measureText(line.txt).width
+        const txtHeight = parseInt(gCtx.font)
+
+        const centerY = linePos.y + txtHeight / 2
+
+        gCtx.fillText(line.txt, linePos.x, centerY)
+        gCtx.strokeText(line.txt, linePos.x, centerY)
+
+
+
+        gLines[idx].width = txtWidth
+        gLines[idx].height = txtHeight
 
         // Frame
         if (meme.selectedLineIdx === idx) {
-            const txtWidth = gCtx.measureText(line.txt).width;
-            const txtHeight = parseInt(gCtx.font)
 
-            const frameWidth = txtWidth + 15;
-            const frameHeight = txtHeight + 15;
+            const framePadding = 5
+            const frameWidth = txtWidth + 2 * framePadding
+            const frameHeight = txtHeight + 2 * framePadding
 
             gCtx.beginPath()
-            gCtx.rect(linePos.x - 10, linePos.y - 15, frameWidth, frameHeight);
+            gCtx.rect(linePos.x - framePadding, linePos.y - framePadding, frameWidth, frameHeight)
             gCtx.stroke()
             gCtx.closePath()
         }
-
     })
+}
+
+function onMouseClick(ev) {
+    const { offsetX, offsetY } = ev
+    const clickedLine = gLines.find(line => {
+        const { x, y, width, height } = line
+        return offsetX >= x && offsetX <= x + width &&
+            offsetY >= y && offsetY <= y + height
+    })
+
+    if (clickedLine) {
+        gCurrLine = clickedLine.lineIdx
+        console.log('on mouse click = ', gCurrLine)
+        changeToClickedLine(gCurrLine)
+        renderMeme()
+    }
+
 }
 
 function onMemeTxt(text) {
@@ -89,10 +112,10 @@ function onAddLine() {
 }
 
 function updateGLinesPos() {
-    let lastIdx = gLinesPos.length - 1
-    let newLinePos = { lineIdx: gLinesPos[lastIdx].lineIdx + 1, x: gLinesPos[lastIdx].x + 40, y: gLinesPos[lastIdx].y + 40 }
+    let lastIdx = gLines.length - 1
+    let newLinePos = { lineIdx: gLines[lastIdx].lineIdx + 1, x: gLines[lastIdx].x + 40, y: gLines[lastIdx].y + 40 }
 
-    gLinesPos.push(newLinePos)
+    gLines.push(newLinePos)
 }
 
 function onSwitchLine() {

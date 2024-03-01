@@ -13,7 +13,7 @@ var gMeme = {
         {
             txt: 'Enter A Text',
             size: 20,
-            color: 'orange'
+            color: 'green'
         }
     ]
 }
@@ -21,7 +21,6 @@ var gMeme = {
 var gKeywords = ['politics', 'funny', 'sarcastic', 'crazy', 'animals']
 
 function getMeme() {
-    // console.log(gMeme)
     return gMeme
 }
 
@@ -30,9 +29,7 @@ function getImg() {
 }
 
 function setLineTxt(text, idx) {
-    console.log(idx)
     gMeme.lines[idx].txt = text
-    console.log(gMeme.lines[idx].txt)
 }
 
 function setImg(imgId) {
@@ -42,7 +39,6 @@ function setImg(imgId) {
 
 function setTxtColor(color, idx) {
     gMeme.lines[idx].color = color
-    console.log('gMeme-service = ', gMeme)
 }
 
 function changeFontSize(dir, idx) {
@@ -53,7 +49,6 @@ function changeFontSize(dir, idx) {
         gMeme.lines[idx].size -= 1
     }
     if (gMeme.lines[idx].size === 0) return
-    console.log('gMeme - changeFont', gMeme)
 }
 
 function addNewLine() {
@@ -77,6 +72,13 @@ function switchLine() {
         gMeme.selectedLineIdx = 0
     }
     return gMeme.selectedLineIdx
+}
+
+function changeToClickedLine(clickedLine) {
+    console.log('changeToClickedLine = ', clickedLine)
+
+    gMeme.selectedLineIdx = clickedLine
+    console.log('clickedLine ---> ', gMeme)
 }
 
 function loadGallery() {
