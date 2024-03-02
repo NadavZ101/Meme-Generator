@@ -19,19 +19,22 @@
         align-items: center;
     }
 
-    /* .nav-bar */
     .nav-btns {
         position: fixed;
         top: 0;
         right: 0;
         height: 30dvh;
+        z-index: 2;
+
+        border: 1px solid black;
+        border-inline-start: 1px solid #ccc;
 
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 30px;
 
-        width: 180px;
+        width: 200px;
 
         background-color: rgb(97 123 149 / 79%);
         border: 1px solid rgb(255 255 255 / 89%);
@@ -40,21 +43,25 @@
         transition: transform 0.6s;
     }
 
-    .nv-btns .btn:hover {
-        background-color: rgb(175 197 202 / 44%);
+    .nv-btns:hover {
+        cursor: pointer;
+        background-color: #76d0b3;
+        transition: background-color 0.6s;
     }
 
     body.menu-open .nav-btns {
         box-shadow: -6px 5px 8px black;
+        z-index: 2;
+
 
         transform: translateX(0);
         transition: transform 0.6s;
     }
 
-    body.menu-open {
-        opacity: 0.3;
-        background-color: lightgrey;
+    .nv-btns .btn:hover {
+        background-color: rgb(175 197 202 / 44%);
     }
+
 
     .toggle-menu-btn {
         display: inline;

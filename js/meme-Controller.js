@@ -228,6 +228,8 @@ function toggleHidden(ev) {
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open')
+    const mainScreen = document.querySelector('.main-screen');
+    mainScreen.style.pointerEvents = document.body.classList.contains('menu-open') ? 'auto' : 'none';
 }
 
 function onUploadImg() {

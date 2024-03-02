@@ -5,6 +5,12 @@
     border-radius: 15px;
 }
 
+.btn:hover {
+    cursor: pointer;
+    background-color: #76d0b3;
+    transition: background-color 0.6s;
+}
+
 .switch-btn {
     width: 30px;
 }
