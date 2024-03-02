@@ -1,0 +1,13 @@
+.meme-container {
+    justify-content: center;
+    gap: 1.2em;
+}
+
+.canvas {
+    border: 2px solid lightslategrey;
+}
+
+.editor {
+    width: 300px;
+    flex-direction: row;
+}

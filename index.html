@@ -9,95 +9,111 @@
 </head>
 
 <body onload="onInit()">
-    <!-- HEADER -->
-    <header class="header">
-        <h2>Meme Generator</h2>
-        <nav class="header-nav-bar flex center gap">
-            <button class="gallery-btn btn" onclick="toggleHidden(this)">Gallery</button>
-            <button class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</button>
-            <button class="about-btn btn" onclick="toggleHidden(this)">About</button>
 
-            <!-- <ul class="clean-list">
-                <li class="header-nav" onclick="">Gallery</li>
-                <li class="header-nav" onclick="">Meme Editor</li>
-                <li class="header-nav" onclick="">About</li>
-            </ul> -->
+    <div class="center-layout">
+        <div class="main-layout">
+            <div class="main-screen" onclick="toggleMenu()"></div>
+            <!-- HEADER -->
+            <header class="header">
+                <h2>Meme Generator</h2>
 
-        </nav>
-    </header>
+                <nav class="nav-bar flex">
+                    <ul class="nav-btns clean-list">
+                        <li class="gallery-btn nv-btns btn" onclick="toggleHidden(this)">Gallery</li>
+                        <li class="editor-btn nv-btns btn" onclick="toggleHidden(this)">Meme Editor</li>
+                        <li class="about-btn nv-btns btn" onclick="toggleHidden(this)">About</li>
+                    </ul>
+                </nav>
 
-    <!-- GALLERY SECTION -->
-    <section class="gallery">
-        <section class="search-section flex center">
-            <div class="input-search">
-                <input type="text" data-trans="search" class="search-meme flex" oninput="onSearchMeme(this.value)">
-                <datalist id="meme-types">
-                    <option value="Politics"></option>
-                    <option value="Funny"></option>
-                </datalist>
+                <!-- <button class="gallery-btn btn" onclick="toggleHidden(this)">Gallery</button>
+                    <button class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</button>
+                    <button class="about-btn btn" onclick="toggleHidden(this)">About</button> -->
+
+                <!-- <ul class="clean-list">
+                        <li class="gallery-btn btn" onclick="toggleHidden(this)>Gallery</li>
+                        <li class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</li>
+                        <li class="about-btn btn" onclick="toggleHidden(this)">About</li>
+                    </ul> -->
+                <button class="toggle-menu-btn" onclick="toggleMenu()" type="button">☰</button>
+
+            </header>
+
+            <!-- GALLERY SECTION -->
+            <section class="gallery">
+                <section class="search-section flex center">
+                    <div class="input-search">
+                        <input type="text" data-trans="search" class="search-meme flex"
+                            oninput="onSearchMeme(this.value)">
+                        <datalist id="meme-types">
+                            <option value="Politics"></option>
+                            <option value="Funny"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="keywords-search flex center">
+                        <button onclick="onKeywordPressed(this.value)" data-trans="Politics"
+                            value="Politics">Politics</button>
+                        <button onclick="onKeywordPressed(this.value)" data-trans="Funny" value="Funny">Funny</button>
+                    </div>
+                </section>
+
+                <section class="memes-gallery flex center"></section>
+            </section>
+
+            <!-- MEME SECTION -->
+            <div class="meme-container" hidden>
+                <!-- <div class="meme"> -->
+
+                <!-- <div class="canvas-container"> -->
+                <canvas class="canvas" width="300" height="300" onclick="onMouseClick(event)"></canvas>
+                <!-- </div> -->
+
+                <div class="editor flex direction-column">
+                    <label for="text">Meme text</label>
+                    <input class="txt-input" type="text" id="text" onkeyup="onMemeTxt(this.value)"
+                        placeholder="enter text" onchange="onMemeTxt(this.value)" onclick="clearInput()">
+
+                    <div class="txt-actions-bar flex">
+                        <!-- Change TO SVG ICONS  -->
+                        <button class="switch-btn btn" onclick="onSwitchLine()">Switch Line</button>
+                        <button class="add-line-btn btn" onclick="onAddLine()">Add Line</button>
+                        <button class="delete-line-btn btn" onclick="">Delete Line</button>
+                    </div>
+
+                    <div class="fonts-bar flex direction-column">
+                        <!-- Change TO SVG ICONS  -->
+                        <button class="font-btn btn" value="increase" onclick="onChangeFontSize(this.value)">Enlarge
+                            Font</button>
+                        <button class="font-btn btn" value="decrease" onclick="onChangeFontSize(this.value)">Decrease
+                            Font</button>
+                        <button class="font-btn btn" onclick="onAlignLeft()">Align Left</button>
+                        <button class="font-btn btn" onclick="">Align Center</button>
+                        <button class="font-btn btn" onclick="">Align Right</button>
+                        <label for="color">Color</label>
+                        <input class="font-btn btn" type="color" id="color" value="#ffffff"
+                            oninput="onTxtColor(this.value)" />
+                        <select class="fonts-lists" onchange="">
+                            <option value="Impact">Impact</option>
+                        </select>
+                    </div>
+
+                    <div class="file-actions bar flex">
+                        <button class="file-btn btn">Save</button>
+                        <button class="file-btn btn">Share to Facebook</button>
+                        <!-- <button class="file-btn btn" "> -->
+                        <a href="#" class="file-btn btn" onclick="downloadMeme(this)"
+                            download="my-meme.jpg">Download</a>
+                    </div>
+                </div>
+                <!-- </div> -->
             </div>
 
-            <div class="keywords-search flex center">
-                <button onclick="onKeywordPressed(this.value)" data-trans="Politics" value="Politics">Politics</button>
-                <button onclick="onKeywordPressed(this.value)" data-trans="Funny" value="Funny">Funny</button>
-            </div>
-        </section>
+            <section class="about">
+                <p>This is the Meme Generator created by Nadav Zivyon!</p>
 
-        <section class="memes-gallery flex center"></section>
-    </section>
-
-    <!-- MEME SECTION -->
-    <div class="meme-container">
-        <div class="meme main flex center">
-
-            <!-- <div class="canvas-container"> -->
-            <canvas class="canvas" width="300" height="300" onclick="onMouseClick(event)"></canvas>
-            <!-- </div> -->
-
-            <div class="editor flex direction-column">
-                <label for="text">Meme text</label>
-                <input class="txt-input" type="text" id="text" onkeyup="onMemeTxt(this.value)" placeholder="enter text"
-                    onchange="onMemeTxt(this.value)" onclick="clearInput()">
-
-                <div class="txt-actions-bar flex">
-                    <!-- Change TO SVG ICONS  -->
-                    <button class="txt-editor-btn btn" onclick="onSwitchLine()">Switch Line</button>
-                    <button class="txt-editor-btn" onclick="onAddLine()">Add Line</button>
-                    <button class="txt-editor-btn btn" onclick="">Delete Line</button>
-                </div>
-
-                <div class="fonts-bar flex direction-column">
-                    <!-- Change TO SVG ICONS  -->
-                    <button class="font-btn btn" value="increase" onclick="onChangeFontSize(this.value)">Enlarge
-                        Font</button>
-                    <button class="font-btn btn" value="decrease" onclick="onChangeFontSize(this.value)">Decrease
-                        Font</button>
-                    <button class="font-btn btn" onclick="">Align Left</button>
-                    <button class="font-btn btn" onclick="">Align Center</button>
-                    <button class="font-btn btn" onclick="">Align Right</button>
-                    <label for="color">Color</label>
-                    <input class="font-btn btn" type="color" id="color" value="#e66465"
-                        oninput="onTxtColor(this.value)" />
-                    <select class="fonts-lists" onchange="">
-                        <option value="Impact">Impact</option>
-                    </select>
-                </div>
-
-                <div class="file-actions bar flex">
-                    <button class="file-btn btn">Save</button>
-                    <button class="file-btn btn">Share to Facebook</button>
-                    <!-- <button class="file-btn btn" "> -->
-                    <a href="#" class="file-btn btn" onclick="downloadMeme(this)" download="my-meme.jpg">Download</a>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
-
-    <section class="about">
-        <p>This is the Meme Generator created by Nadav Zivyon!</p>
-
-    </section>
-
     <script src="js/service/utils.js"></script>
     <script src="js/service/meme-Service.js"></script>
     <script src="js/gallery-Controller.js"></script>

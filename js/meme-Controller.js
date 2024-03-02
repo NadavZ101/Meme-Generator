@@ -35,8 +35,8 @@ function drawTxt(meme) {
 
     memeLines.forEach((line, idx) => {
         gCtx.lineWidth = 1
-        gCtx.strokeStyle = 'white'
-        gCtx.fillStyle = line.color || 'green'
+        gCtx.strokeStyle = 'black'
+        gCtx.fillStyle = line.color || 'white'
         gCtx.font = `${line.size}px Impact` || '20px Impact'
         gCtx.textBaseline = 'middle'
         gCtx.textAlign = 'left'
@@ -62,6 +62,8 @@ function drawTxt(meme) {
             const framePadding = 5
             const frameWidth = txtWidth + 2 * framePadding
             const frameHeight = txtHeight + 2 * framePadding
+
+            gCtx.strokeStyle = 'white'
 
             gCtx.beginPath()
             gCtx.rect(linePos.x - framePadding, linePos.y - framePadding, frameWidth, frameHeight)
@@ -123,7 +125,10 @@ function onSwitchLine() {
     renderMeme()
 }
 
+function onAlignLeft() {
 
+
+}
 
 function clearInput() {
 
@@ -161,26 +166,32 @@ function toggleHidden(ev) {
     const elGallery = document.querySelector('.gallery')
     const elAbout = document.querySelector('.about')
 
-    if (ev.classList.value === 'gallery-btn btn') {
-        elGallery.style.display = 'block'
+    if (ev.classList.value === 'gallery-btn nv-btns btn') {
+        elGallery.style.display = 'grid'
 
         elMemeEditor.style.display = 'none'
         elAbout.style.display = 'none'
 
     }
 
-    if (ev.classList.value === 'editor-btn btn') {
+    if (ev.classList.value === 'editor-btn nv-btns btn') {
         hideGallery()
         showEditor()
         elAbout.style.display = 'none'
 
     }
 
-    if (ev.classList.value === 'about-btn btn') {
+    if (ev.classList.value === 'about-btn nv-btns btn') {
         hideGallery()
         elMemeEditor.style.display = 'none'
-        elAbout.style.display = 'block'
+        elAbout.style.display = 'flex'
+        elAbout.style.justifyContent = 'center'
+
     }
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
 }
 
 

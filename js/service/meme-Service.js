@@ -13,7 +13,7 @@ var gMeme = {
         {
             txt: 'Enter A Text',
             size: 20,
-            color: 'green'
+            color: 'white'
         }
     ]
 }

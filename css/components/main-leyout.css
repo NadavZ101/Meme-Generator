@@ -1,0 +1,26 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 20px minmax(auto, 900px) 20px;
+    grid-template-areas:
+        "header header header"
+        ". gallery ."
+        ". meme-c ."
+        ". about ."
+
+}
+
+.header {
+    grid-area: header;
+}
+
+.gallery {
+    grid-area: gallery;
+}
+
+.meme-container {
+    grid-area: meme-c;
+}
+
+.about {
+    grid-area: about;
+}
