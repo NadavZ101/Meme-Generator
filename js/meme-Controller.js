@@ -1,19 +1,25 @@
 'use strict'
 
-let gElCanvas
-let gCtx
+var gElCanvas
+var gCtx
 
-let gLines = [
+var gLines = [
     { lineIdx: 0, x: 10, y: 20, width: 0, height: 0 },
 ]
+var gLastLineIdx = 0
 
-let gCurrLine = 0
+var gCurrLine = 0
+var gIsDeleted = false
+const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
+
 
 
 function onInit() {
     setCanvas()
     renderGallery()
     renderMeme()
+    // addListeners()
+
 }
 
 function renderMeme() {
@@ -87,11 +93,9 @@ function onMouseClick(ev) {
         changeToClickedLine(gCurrLine)
         renderMeme()
     }
-
 }
 
 function onMemeTxt(text) {
-    console.log('memeTxt currLine = ', gCurrLine)
     setLineTxt(text, gCurrLine)
     renderMeme()
 }
@@ -102,26 +106,47 @@ function onTxtColor(color) {
 }
 
 function onChangeFontSize(dir) {
-    console.log(dir)
     changeFontSize(dir, gCurrLine)
     renderMeme()
 }
 
 function onAddLine() {
-    updateGLinesPos()
     gCurrLine = addNewLine()
+    updateGLinesPos()
     renderMeme()
 }
 
 function updateGLinesPos() {
-    let lastIdx = gLines.length - 1
-    let newLinePos = { lineIdx: gLines[lastIdx].lineIdx + 1, x: gLines[lastIdx].x + 40, y: gLines[lastIdx].y + 40 }
+    if (!gIsDeleted) {
+        gLastLineIdx = gLines.length - 1
+        let newLinePos = { lineIdx: gLines[gLastLineIdx].lineIdx + 1, x: gLines[gLastLineIdx].x + 40, y: gLines[gLastLineIdx].y + 40 }
 
-    gLines.push(newLinePos)
+        gLines.push(newLinePos)
+    } else {
+        gLines.splice(gCurrLine, 1)
+        console.log(gLines)
+        gIsDeleted = false
+    }
+
 }
 
 function onSwitchLine() {
     gCurrLine = switchLine()
+    renderMeme()
+}
+
+function onDeleteLine() {
+    gIsDeleted = true
+    gCurrLine = deleteLine(gCurrLine)
+    updateGLinesPos()
+
+    if (gCurrLine < 0) {
+        gLastLineIdx = 0
+        gCurrLine = 0
+        gLines = [
+            { lineIdx: 0, x: 10, y: 20, width: 0, height: 0 },
+        ]
+    }
     renderMeme()
 }
 
@@ -189,6 +214,17 @@ function toggleHidden(ev) {
 
     }
 }
+
+// function addListeners() {
+//     addTouchListeners()
+
+// }
+
+// function addTouchListeners() {
+//     gElCanvas.addEventListener('touchstart', onStartLine)
+//     gElCanvas.addEventListener('touchmove', onDrawLine)
+//     gElCanvas.addEventListener('touchend', onEndLine)
+// }
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open')

@@ -74,6 +74,19 @@ function switchLine() {
     return gMeme.selectedLineIdx
 }
 
+function deleteLine(currLine) {
+    console.log('before delete line = ', gMeme.selectedLineIdx)
+    gMeme.lines.splice(currLine, 1)
+
+    console.log('currLine ', currLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+
+    console.log('After delete line = ', gMeme)
+    console.log('AFTER delete SelcetedLine -> ', gMeme.selectedLineIdx)
+    return gMeme.selectedLineIdx
+
+}
+
 function changeToClickedLine(clickedLine) {
     console.log('changeToClickedLine = ', clickedLine)
 
