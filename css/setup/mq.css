@@ -6,6 +6,12 @@
 
 /* Mobile */
 @media (max-width: 740px) {
+
+    .main-layout {
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, 700px) minmax(20px, 1fr)
+    }
+
     .header {
         box-shadow: none;
         display: flex;

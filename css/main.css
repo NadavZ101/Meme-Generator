@@ -1,9 +1,10 @@
-/* @import url(setup/vars.css);
-@import url(setup/fonts.css); */
+/* @import url(setup/vars.css); */
+@import url(setup/fonts.css);
 
 /* BASIC */
 @import url(basic/helpers.css);
 @import url(basic/base.css);
+@import url(basic/buttons.css);
 
 
 /* COMPONENTS */

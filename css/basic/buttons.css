@@ -1,0 +1,31 @@
+.btn {
+    font-size: 1.2em;
+    min-width: 30px;
+
+    border-radius: 15px;
+}
+
+.switch-btn {
+    width: 30px;
+}
+
+.font-btn {
+    width: 50px;
+}
+
+
+.color-btn {
+    width: 60px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.fonts-lists {
+    margin-top: 0;
+    padding: 3px;
+}
+
+.download-btn {
+    width: 50px;
+}

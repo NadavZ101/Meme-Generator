@@ -25,15 +25,6 @@
                     </ul>
                 </nav>
 
-                <!-- <button class="gallery-btn btn" onclick="toggleHidden(this)">Gallery</button>
-                    <button class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</button>
-                    <button class="about-btn btn" onclick="toggleHidden(this)">About</button> -->
-
-                <!-- <ul class="clean-list">
-                        <li class="gallery-btn btn" onclick="toggleHidden(this)>Gallery</li>
-                        <li class="editor-btn btn" onclick="toggleHidden(this)">Meme Editor</li>
-                        <li class="about-btn btn" onclick="toggleHidden(this)">About</li>
-                    </ul> -->
                 <button class="toggle-menu-btn" onclick="toggleMenu()" type="button">☰</button>
 
             </header>
@@ -43,7 +34,7 @@
                 <section class="search-section flex center">
                     <div class="input-search">
                         <input type="text" data-trans="search" class="search-meme flex"
-                            oninput="onSearchMeme(this.value)">
+                            oninput="onSearchMeme(this.value)" placeholder="Search a">
                         <datalist id="meme-types">
                             <option value="Politics"></option>
                             <option value="Funny"></option>
@@ -62,35 +53,52 @@
 
             <!-- MEME SECTION -->
             <div class="meme-container" hidden>
-                <!-- <div class="meme"> -->
 
-                <!-- <div class="canvas-container"> -->
                 <canvas class="canvas" width="300" height="300" onclick="onMouseClick(event)"></canvas>
-                <!-- </div> -->
 
                 <div class="editor flex direction-column">
-                    <label for="text">Meme text</label>
                     <input class="txt-input" type="text" id="text" onkeyup="onMemeTxt(this.value)"
-                        placeholder="enter text" onchange="onMemeTxt(this.value)" onclick="clearInput()">
+                        placeholder=" Enter text" onchange="onMemeTxt(this.value)" onclick="clearInput()">
 
                     <div class="txt-actions-bar flex">
                         <!-- Change TO SVG ICONS  -->
-                        <button class="switch-btn btn" onclick="onSwitchLine()">Switch Line</button>
-                        <button class="add-line-btn btn" onclick="onAddLine()">Add Line</button>
-                        <button class="delete-line-btn btn" onclick="">Delete Line</button>
+                        <button class="switch-btn btn" onclick="onSwitchLine()"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up"
+                                viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                        </button>
+                        <button class="add-line-btn btn" onclick="onAddLine()"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                            </svg></button>
+                        <button class="delete-line-btn btn" onclick=""><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                            </svg></button>
                     </div>
 
-                    <div class="fonts-bar flex direction-column">
+                    <div class="fonts-bar flex">
                         <!-- Change TO SVG ICONS  -->
-                        <button class="font-btn btn" value="increase" onclick="onChangeFontSize(this.value)">Enlarge
-                            Font</button>
-                        <button class="font-btn btn" value="decrease" onclick="onChangeFontSize(this.value)">Decrease
-                            Font</button>
-                        <button class="font-btn btn" onclick="onAlignLeft()">Align Left</button>
-                        <button class="font-btn btn" onclick="">Align Center</button>
-                        <button class="font-btn btn" onclick="">Align Right</button>
+                        <button class="font-btn btn" value="increase" onclick="onChangeFontSize(this.value)">
+                            <i class="fa-solid fa-font"></i>+
+                        </button>
+
+                        <button class="font-btn btn" value="decrease" onclick="onChangeFontSize(this.value)"><i
+                                class="fa-solid fa-font"></i>-
+                        </button>
+                        <button class="font-btn btn" onclick="onAlignLeft()"><i
+                                class="fa-solid fa-align-left"></i></button>
+                        <button class="font-btn btn" onclick=""><i class="fa-solid fa-align-center"></i></button>
+                        <button class="font-btn btn" onclick=""><i class="fa-solid fa-align-right"></i></button>
+                    </div>
+
+                    <div class="fonts-style">
                         <label for="color">Color</label>
-                        <input class="font-btn btn" type="color" id="color" value="#ffffff"
+                        <input class="color-btn btn" type="color" id="color" value="#ffffff"
                             oninput="onTxtColor(this.value)" />
                         <select class="fonts-lists" onchange="">
                             <option value="Impact">Impact</option>
@@ -99,10 +107,14 @@
 
                     <div class="file-actions bar flex">
                         <button class="file-btn btn">Save</button>
-                        <button class="file-btn btn">Share to Facebook</button>
+                        <button class="file-btn btn" onclick="onUploadImg()">
+                            <i class="fa-solid fa-share"></i>
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </button>
                         <!-- <button class="file-btn btn" "> -->
-                        <a href="#" class="file-btn btn" onclick="downloadMeme(this)"
-                            download="my-meme.jpg">Download</a>
+                        <button class="download-btn btn"><a href="#" class="file-btn btn" onclick="downloadMeme(this)"
+                                download="my-meme.jpg"><i class="fa-solid fa-download"></i>
+                            </a></button>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -114,6 +126,8 @@
             </section>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/1c5f60e7ad.js" crossorigin="anonymous"></script>
+
     <script src="js/service/utils.js"></script>
     <script src="js/service/meme-Service.js"></script>
     <script src="js/gallery-Controller.js"></script>
