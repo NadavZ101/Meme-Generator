@@ -13,14 +13,6 @@
     margin-bottom: 10px;
 }
 
-.input-search {
-    /* flex-grow: 1; */
-}
-
-.search-meme {
-    /* flex-grow: 1fr; */
-}
-
 .memes-gallery {
     grid-area: g;
     gap: 10px;

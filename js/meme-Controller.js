@@ -13,12 +13,14 @@ var gIsDeleted = false
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
 
-
 function onInit() {
     setCanvas()
     renderGallery()
     renderMeme()
+
+    // resizeCanvas()
     // addListeners()
+    // window.addEventListener('resize', () => resizeCanvas())
 
 }
 
@@ -33,7 +35,6 @@ function renderMeme() {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         drawTxt(meme)
     }
-
 }
 
 function drawTxt(meme) {
@@ -127,7 +128,6 @@ function updateGLinesPos() {
         console.log(gLines)
         gIsDeleted = false
     }
-
 }
 
 function onSwitchLine() {
@@ -150,13 +150,7 @@ function onDeleteLine() {
     renderMeme()
 }
 
-function onAlignLeft() {
-
-
-}
-
 function clearInput() {
-
     const elMemeTxt = document.querySelector('.txt-input')
     elMemeTxt.value = ''
 }
@@ -215,21 +209,8 @@ function toggleHidden(ev) {
     }
 }
 
-// function addListeners() {
-//     addTouchListeners()
-
-// }
-
-// function addTouchListeners() {
-//     gElCanvas.addEventListener('touchstart', onStartLine)
-//     gElCanvas.addEventListener('touchmove', onDrawLine)
-//     gElCanvas.addEventListener('touchend', onEndLine)
-// }
-
 function toggleMenu() {
     document.body.classList.toggle('menu-open')
-    const mainScreen = document.querySelector('.main-screen');
-    mainScreen.style.pointerEvents = document.body.classList.contains('menu-open') ? 'auto' : 'none';
 }
 
 function onUploadImg() {
@@ -261,6 +242,34 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
 }
+
+// function coverCanvasWithImg(elImg) {
+//     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+//     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+// }
+
+// function resizeCanvas() {
+//     const elContainer = document.querySelector('.canvas-container')
+//     gElCanvas.width = elContainer.clientWidth
+// }
+
+// function addListeners() {
+//     addMouseListeners()
+//     addTouchListeners()
+// }
+
+// function addMouseListeners() {
+//     gElCanvas.addEventListener('mousedown', onDown)
+//     gElCanvas.addEventListener('mousemove', onMove)
+//     gElCanvas.addEventListener('mouseup', onUp)
+// }
+
+// function addTouchListeners() {
+//     gElCanvas.addEventListener('touchstart', onDown)
+//     gElCanvas.addEventListener('touchmove', onMove)
+//     gElCanvas.addEventListener('touchend', onUp)
+// }
+
 
 
 

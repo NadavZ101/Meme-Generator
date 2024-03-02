@@ -1,15 +1,11 @@
-* {
+/* * {
     box-sizing: border-box;
-
-}
-
-html {}
+} */
 
 body {
     background: linear-gradient(to right, #44489574, #d3a895, #44489574);
     font-size: 1rem;
     margin: 0;
-
 }
 
 .center-layout {

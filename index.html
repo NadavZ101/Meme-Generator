@@ -54,8 +54,9 @@
             <!-- MEME SECTION -->
             <div class="meme-container" hidden>
 
-                <canvas class="canvas" width="300" height="300" onclick="onMouseClick(event)"></canvas>
-
+                <div class="canvas-container">
+                    <canvas class="canvas" width="300" height="300" onclick="onMouseClick(event)"></canvas>
+                </div>
                 <div class="editor flex direction-column">
                     <input class="txt-input" type="text" id="text" onkeyup="onMemeTxt(this.value)"
                         placeholder=" Enter text" onchange="onMemeTxt(this.value)" onclick="clearInput()">
@@ -111,13 +112,11 @@
                             <i class="fa-solid fa-share"></i>
                             <i class="fa-brands fa-facebook-f"></i>
                         </button>
-                        <!-- <button class="file-btn btn" "> -->
                         <button class="download-btn btn"><a href="#" class="file-btn btn" onclick="downloadMeme(this)"
                                 download="my-meme.jpg"><i class="fa-solid fa-download"></i>
                             </a></button>
                     </div>
                 </div>
-                <!-- </div> -->
             </div>
 
             <section class="about">

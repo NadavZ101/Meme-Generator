@@ -3,8 +3,13 @@
     gap: 1.2em;
 }
 
+/* .canvas-container {
+    width: 40vw;
+} */
+
 .canvas {
     border: 2px solid lightslategrey;
+    border-radius: 20px;
 }
 
 .editor {
