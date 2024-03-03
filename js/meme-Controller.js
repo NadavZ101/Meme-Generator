@@ -58,8 +58,6 @@ function drawTxt(meme) {
         gCtx.fillText(line.txt, linePos.x, centerY)
         gCtx.strokeText(line.txt, linePos.x, centerY)
 
-
-
         gLines[idx].width = txtWidth
         gLines[idx].height = txtHeight
 
@@ -153,7 +151,6 @@ function onDeleteLine() {
 function clearInput() {
     const elMemeTxt = document.querySelector('.txt-input')
     elMemeTxt.value = ''
-
 }
 
 function downloadMeme(elLink) {
@@ -181,7 +178,7 @@ function showEditor() {
     elMemeEditor.style.alignItems = 'center'
 }
 
-function toggleHidden(ev) {
+function toggleHiddenSections(ev) {
     const elMemeEditor = document.querySelector('.meme-container')
     const elGallery = document.querySelector('.gallery')
     const elAbout = document.querySelector('.about')
@@ -190,7 +187,7 @@ function toggleHidden(ev) {
         elGallery.style.display = 'grid'
         elMemeEditor.style.display = 'none'
         elAbout.style.display = 'none'
-        clearCanvas()
+        clearLines()
     }
 
     if (ev.classList.value === 'editor-btn nv-btns btn') {
@@ -205,7 +202,6 @@ function toggleHidden(ev) {
         elMemeEditor.style.display = 'none'
         elAbout.style.display = 'flex'
         elAbout.style.justifyContent = 'center'
-        clearCanvas()
     }
 }
 
@@ -243,6 +239,12 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.send(formData)
 }
 
+function clearLines() {
+    getResetMemeLines()
+    gCurrLine = 0
+}
+
+
 // function coverCanvasWithImg(elImg) {
 //     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
 //     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -269,6 +271,8 @@ function doUploadImg(imgDataUrl, onSuccess) {
 //     gElCanvas.addEventListener('touchmove', onMove)
 //     gElCanvas.addEventListener('touchend', onUp)
 // }
+
+
 
 
 

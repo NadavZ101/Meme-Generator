@@ -35,6 +35,7 @@ function setLineTxt(text, idx) {
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
     gSelectedImgIdx = gImgs.findIndex(img => img.id === imgId)
+
 }
 
 function setTxtColor(color, idx) {
@@ -91,6 +92,19 @@ function changeToClickedLine(clickedLine) {
 function loadGallery() {
     _createImgs(imgNum)
     return gImgs
+}
+
+function getResetMemeLines() {
+    while (gMeme.lines.length > 0) {
+        gMeme.lines.splice(gMeme.lines.length - 1, 1)
+    }
+
+    gMeme.lines[0] = {
+        txt: 'Enter A Text',
+        size: 20,
+        color: 'white'
+    }
+    gMeme.selectedLineIdx = 0
 }
 
 function _createImgs(imgNum) {
