@@ -260,9 +260,9 @@ function addMouseListeners() {
 }
 
 function addTouchListeners() {
-    // gElCanvas.addEventListener('touchstart', onDown)
-    // gElCanvas.addEventListener('touchmove', onMove)
-    // gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function onDown(ev) {
