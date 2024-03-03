@@ -6,5 +6,5 @@
     --main-screen-clr: rgba(0, 0, 0, 0.5);
     --editor-clr: #607c8e87;
     --txt-input-clr: white;
-    --bg-memes-clr: black;
+    --bg-memes-clr: rgb(0 0 0 / 75%);
 }

@@ -13,7 +13,8 @@ var gMeme = {
         {
             txt: 'Enter A Text',
             size: 20,
-            color: 'white'
+            color: 'white',
+            isDrag: false,
         }
     ]
 }
@@ -83,10 +84,7 @@ function deleteLine(currLine) {
 }
 
 function changeToClickedLine(clickedLine) {
-    console.log('changeToClickedLine = ', clickedLine)
-
     gMeme.selectedLineIdx = clickedLine
-    console.log('clickedLine ---> ', gMeme)
 }
 
 function loadGallery() {
@@ -105,6 +103,33 @@ function getResetMemeLines() {
         color: 'white'
     }
     gMeme.selectedLineIdx = 0
+}
+
+function setLineDrag(drag) {
+    console.log('service isDrag = ', drag)
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = drag
+    console.log('setLineDrag ', gMeme)
+}
+
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVENTS.includes(ev.type)) {
+
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+
+
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
 }
 
 function _createImgs(imgNum) {

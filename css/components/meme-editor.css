@@ -7,9 +7,9 @@
     border-radius: 1.25em;
 }
 
-/* .canvas-container {
-    width: 40vw;
-} */
+.canvas-container {
+    /* width: 40vw; */
+}
 
 .canvas {
     border: 2px solid lightslategrey;
