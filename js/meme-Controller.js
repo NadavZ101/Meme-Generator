@@ -12,18 +12,15 @@ var gCurrLine = 0
 var gIsDeleted = false
 var gStartPos
 
+const gCanvasCenter = 100
+
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
 
 function onInit() {
     setCanvas()
     renderGallery()
-    renderMeme()
-
     addListeners()
-
-    // resizeCanvas()
-
 }
 
 function renderMeme() {
@@ -108,6 +105,21 @@ function onTxtColor(color) {
 
 function onChangeFontSize(dir) {
     changeFontSize(dir, gCurrLine)
+    renderMeme()
+}
+
+function onAlignLeft() {
+    gLines[gCurrLine].x = 0
+    renderMeme()
+}
+
+function onAlignCenter() {
+    gLines[gCurrLine].x = gCanvasCenter
+    renderMeme()
+}
+
+function onAlignRight() {
+    gLines[gCurrLine].x = gCanvasCenter * 2
     renderMeme()
 }
 
@@ -250,7 +262,6 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     // window.addEventListener('resize', () => resizeCanvas())
-
 }
 
 function addMouseListeners() {
@@ -265,20 +276,6 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function onDown(ev) {
-    gStartPos = getEvPos(ev)
-    // console.log(gStartPos)
-
-    const isClick = isLineClick(gStartPos)
-    console.log(isClick)
-    // console.log(!result)
-
-    if (!isClick) return
-
-    setLineDrag(true)
-    document.body.style.cursor = 'grabbing'
-}
-
 function isLineClick(pos) {
     const isClickedLine = gLines.find(line => {
         const { x, y, width, height } = line
@@ -286,11 +283,23 @@ function isLineClick(pos) {
             pos.y >= y && pos.y <= y + height
     })
 
-    console.log(isClickedLine)
-
     if (isClickedLine !== undefined) return true
     else return false
 
+}
+
+function onDown(ev) {
+    gStartPos = getEvPos(ev)
+
+    const isClick = isLineClick(gStartPos)
+
+    if (!isClick) return
+    console.log(isClick)
+
+    console.log('made it here')
+    setLineDrag(true)
+
+    gElCanvas.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
@@ -316,26 +325,15 @@ function moveLine(dx, dy) {
 
 function onUp() {
     setLineDrag(false)
-    document.body.style.cursor = 'grab'
+    gElCanvas.style.cursor = 'auto'
 }
 
 
-
-// var gLines = [
-//     { lineIdx: 0, x: 10, y: 20, width: 0, height: 0 },
-// ]
-
-
-// function coverCanvasWithImg(elImg) {
-//     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-//     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+// function resizeCanvas() {
+//     const elContainer = document.querySelector('.canvas-container')
+//     console.log(elContainer.clientWidth)
+//     gElCanvas.width = elContainer.clientWidth
 // }
-
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    console.log(elContainer.clientWidth)
-    gElCanvas.width = elContainer.clientWidth
-}
 
 
 

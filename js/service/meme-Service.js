@@ -75,8 +75,8 @@ function switchLine() {
     return gMeme.selectedLineIdx
 }
 
-function deleteLine(currLine) {
-    gMeme.lines.splice(currLine, 1)
+function deleteLine(selectedLine) {
+    gMeme.lines.splice(selectedLine, 1)
 
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 
@@ -106,9 +106,7 @@ function getResetMemeLines() {
 }
 
 function setLineDrag(drag) {
-    console.log('service isDrag = ', drag)
     gMeme.lines[gMeme.selectedLineIdx].isDrag = drag
-    console.log('setLineDrag ', gMeme)
 }
 
 
