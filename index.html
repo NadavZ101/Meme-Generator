@@ -33,15 +33,22 @@
             <section class="gallery">
                 <section class="search-section flex center">
                     <div class="input-search">
-                        <input type="text" data-trans="search" class="search-meme flex"
-                            oninput="onSearchMeme(this.value)" placeholder="Search Meme">
-                        <datalist id="meme-types">
-                            <option value="Politics"></option>
-                            <option value="Funny"></option>
-                        </datalist>
-                    </div>
+                        <label for="memes">Search A Meme</label> <input type="text" data-trans="search"
+                            class="search-meme " oninput="onSearchMeme(this.value)" placeholder="Search Meme">
 
-                    <!-- <div class="keywords-search flex center">
+                        <select name="memes" class="memes" onchange="onSearchMeme(this.value)">
+                            <option value="politics">politics</option>
+                            <option value="funny">funny</option>
+                            <option value="sarcastic">sarcastic</option>
+                            <option value="crazy">crazy</option>
+                            <option value="animal">animal</option>
+                            <option value="cute">cute</option>
+                            <option value="kids">kids</option>
+                            <option value="movies">movies</option>
+                        </select>
+
+
+                        <!-- <div class="keywords-search flex center">
                         <button onclick="onKeywordPressed(this.value)" data-trans="Politics"
                             value="Politics">Politics</button>
                         <button onclick="onKeywordPressed(this.value)" data-trans="Funny" value="Funny">Funny</button>
