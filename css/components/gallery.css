@@ -10,11 +10,37 @@
 
 .search-section {
     grid-area: s;
-    gap: 10px;
-    margin-bottom: 10px;
-    background-color: var(--search-section-clr);
+    height: 6em;
+    gap: 1.6em;
+    margin-bottom: 1em;
+    background-color: var(--bg-memes-clr);
     height: 30px;
     border-radius: 1.25em;
+}
+
+.search-meme {
+    width: 270px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 9px white;
+    background-color: rgb(61 163 200 / 32%);
+
+    font-size: 1.2em;
+    color: var(--txt-input-clr);
+}
+
+.search-meme:hover {
+    scale: 1.05;
+    transition: scale 0.6s;
+}
+
+.memes-list {
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 9px white;
+    background-color: rgb(61 163 200 / 32%);
+
+    font-size: 1em;
+    color: var(--txt-input-clr);
 }
 
 .memes-gallery {

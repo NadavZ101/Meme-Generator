@@ -18,6 +18,7 @@ function renderGallery() {
     } else {
         imgs = gFilteredImgs
     }
+    console.log(imgs)
 
     const strImgsHTMLs = imgs.map(img => {
         return `<img id=${img.id} src="${img.url}" keywords="${img.keywords}"        onclick="onImgSelect(${img.id}, this)"></img>`

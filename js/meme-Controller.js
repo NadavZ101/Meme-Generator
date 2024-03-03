@@ -328,6 +328,13 @@ function onUp() {
     gElCanvas.style.cursor = 'auto'
 }
 
+function clearSearch() {
+    const elSearchInput = document.querySelector('.search-meme').value = ''
+    const elListSearch = document.querySelector('.memes-list').selectedIndex = -1
+    gFilteredImgs = []
+    renderGallery()
+}
+
 
 // function resizeCanvas() {
 //     const elContainer = document.querySelector('.canvas-container')
