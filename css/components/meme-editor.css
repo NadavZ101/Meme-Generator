@@ -1,6 +1,10 @@
 .meme-container {
-    justify-content: center;
+    /* justify-content: center; */
     gap: 1.2em;
+
+    padding: 1.25em 0;
+    background-color: var(--bg-memes-clr);
+    border-radius: 1.25em;
 }
 
 /* .canvas-container {
@@ -9,7 +13,7 @@
 
 .canvas {
     border: 2px solid lightslategrey;
-    border-radius: 20px;
+    border-radius: 1.25em;
 }
 
 .editor {
@@ -18,7 +22,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: #607c8e87;
+    background-color: var(--editor-clr);
     border-radius: 20px;
 }
 
@@ -28,9 +32,7 @@
 }
 
 .txt-input {
-    flex-shrink: 1;
-
-    margin-top: 20px;
+    margin-top: 1.25em;
     width: 270px;
     border-radius: 15px;
     border: 1px solid transparent;
@@ -38,7 +40,10 @@
     background-color: rgb(61 163 200 / 32%);
 
     font-size: 1.2em;
-    color: white;
+    color: var(--txt-input-clr);
 }
 
-.font-style {}
+.txt-input:hover {
+    scale: 1.05;
+    transition: scale 0.6s;
+}

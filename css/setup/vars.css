@@ -1,0 +1,10 @@
+:root {
+    --bg-header-clr: linear-gradient(to right, #607cc3, #6f80e0, #612caa);
+    --bg-clr: linear-gradient(to right, #44489574, #d3a895, #44489574);
+    --btn-hover-clr: #76d0b3;
+    --nav-bts-clr: whitesmoke;
+    --main-screen-clr: rgba(0, 0, 0, 0.5);
+    --editor-clr: #607c8e87;
+    --txt-input-clr: white;
+    --bg-memes-clr: black;
+}

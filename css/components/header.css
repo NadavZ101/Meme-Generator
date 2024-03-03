@@ -3,11 +3,13 @@ header {
     justify-content: space-between;
 
 
-    background: linear-gradient(to right, #607cc3, #6f80e0, #612caa);
+    background: var(--bg-header-clr);
     margin-bottom: 0.8em;
 }
 
 h2 {
+    font-family: honk;
+    font-size: 2.5em;
     margin-left: 20px;
 }
 
@@ -15,7 +17,7 @@ h2 {
     align-items: center;
 
     font-size: 1.3em;
-    color: whitesmoke;
+    color: var(--nav-bts-clr)
 }
 
 .nav-btns {
@@ -25,5 +27,6 @@ h2 {
 }
 
 .nv-btns {
+    font-family: bungee;
     padding: 0 20px;
 }

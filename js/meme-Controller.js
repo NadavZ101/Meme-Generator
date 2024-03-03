@@ -153,6 +153,7 @@ function onDeleteLine() {
 function clearInput() {
     const elMemeTxt = document.querySelector('.txt-input')
     elMemeTxt.value = ''
+
 }
 
 function downloadMeme(elLink) {
@@ -187,10 +188,9 @@ function toggleHidden(ev) {
 
     if (ev.classList.value === 'gallery-btn nv-btns btn') {
         elGallery.style.display = 'grid'
-
         elMemeEditor.style.display = 'none'
         elAbout.style.display = 'none'
-
+        clearCanvas()
     }
 
     if (ev.classList.value === 'editor-btn nv-btns btn') {
@@ -205,7 +205,7 @@ function toggleHidden(ev) {
         elMemeEditor.style.display = 'none'
         elAbout.style.display = 'flex'
         elAbout.style.justifyContent = 'center'
-
+        clearCanvas()
     }
 }
 
@@ -269,6 +269,8 @@ function doUploadImg(imgDataUrl, onSuccess) {
 //     gElCanvas.addEventListener('touchmove', onMove)
 //     gElCanvas.addEventListener('touchend', onUp)
 // }
+
+
 
 
 
