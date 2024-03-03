@@ -335,6 +335,9 @@ function clearSearch() {
     renderGallery()
 }
 
+function clearOnEnter() {
+    document.querySelector('.txt-input').value = ''
+}
 
 // function resizeCanvas() {
 //     const elContainer = document.querySelector('.canvas-container')

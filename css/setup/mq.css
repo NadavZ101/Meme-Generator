@@ -53,19 +53,14 @@
         box-shadow: -6px 5px 8px black;
         z-index: 2;
 
-
         transform: translateX(0);
         transition: transform 0.6s;
-    }
-
-    .nv-btns .btn:hover {
-        background-color: rgb(175 197 202 / 44%);
     }
 
     .toggle-menu-btn {
         display: inline;
         align-items: center;
-        right: 20px;
+        right: 1.25em;
     }
 
     .search-section {

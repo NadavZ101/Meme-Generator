@@ -13,11 +13,9 @@ var gFilteredImgs = []
 // }
 
 function renderGallery() {
-    if (gFilteredImgs.length === 0) {
-        var imgs = loadGallery()
-    } else {
-        imgs = gFilteredImgs
-    }
+    if (gFilteredImgs.length === 0) var imgs = loadGallery()
+    else imgs = gFilteredImgs
+
     console.log(imgs)
 
     const strImgsHTMLs = imgs.map(img => {
@@ -36,7 +34,6 @@ function onImgSelect(imgId) {
 }
 
 function onSearchMeme(keyword) {
-    console.log(keyword)
     gFilteredImgs = setFilterBy(keyword)
     renderGallery()
 }

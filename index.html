@@ -32,8 +32,7 @@
             <!-- GALLERY SECTION -->
             <section class="gallery">
                 <section class="search-section flex center">
-                    <!-- <div class="input-search"> -->
-                    <!-- <label for="memes">Search A Meme</label>  -->
+
                     <input type="text" data-trans="search" class="search-meme" oninput="onSearchMeme(this.value)"
                         placeholder="Search Meme">
 
@@ -49,7 +48,6 @@
                     </select>
 
                     <button class="btn" onclick="clearSearch()">Clear</button>
-                    <!-- </div> -->
                 </section>
 
                 <section class="memes-gallery flex center"></section>
@@ -68,7 +66,6 @@
                         placeholder=" Enter text" onchange="onMemeTxt(this.value)" onclick="clearInput()">
 
                     <div class="txt-actions-bar flex">
-                        <!-- Change TO SVG ICONS  -->
                         <button class="switch-btn btn" onclick="onSwitchLine()"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up"
                                 viewBox="0 0 16 16">
@@ -76,8 +73,8 @@
                                     d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
                             </svg>
                         </button>
-                        <button class="add-line-btn btn" onclick="onAddLine()"><svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512">
+                        <button class="add-line-btn btn" onclick="onAddLine();clearOnEnter()"><svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path
                                     d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                             </svg></button>
@@ -132,6 +129,7 @@
             </section>
         </div>
     </div>
+
     <script src="https://kit.fontawesome.com/1c5f60e7ad.js" crossorigin="anonymous"></script>
 
     <script src="js/service/utils.js"></script>

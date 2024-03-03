@@ -1,5 +1,4 @@
 .meme-container {
-    /* justify-content: center; */
     gap: 1.2em;
 
     padding: 1.25em 0;
@@ -14,13 +13,13 @@
 }
 
 .editor {
-    width: 300px;
+    width: 18.75em;
     border: 1px solid black;
     justify-content: space-between;
     align-items: center;
 
     background-color: var(--editor-clr);
-    border-radius: 20px;
+    border-radius: 1.25em;
 }
 
 .editor>* {
@@ -34,7 +33,7 @@
     border-radius: 15px;
     border: 1px solid transparent;
     box-shadow: 0px 0px 9px white;
-    background-color: rgb(61 163 200 / 32%);
+    background-color: var(--fields-clr);
 
     font-size: 1.2em;
     color: var(--txt-input-clr);
@@ -43,4 +42,16 @@
 .txt-input:hover {
     scale: 1.05;
     transition: scale 0.6s;
+}
+
+label {
+    color: var(--txt-input-clr);
+}
+
+select.fonts-lists {
+    border-radius: 15px;
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 9px white;
+    background-color: var(--fields-clr);
+    color: var(--txt-input-clr);
 }
